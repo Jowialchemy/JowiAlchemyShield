@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JowiAlchemyShield - Pre-Trade Safety System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-secondary: #111827;
+            --bg-card: #1a2332;
+            --bg-hover: #232d3f;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-green: #10b981;
+            --accent-green-dim: rgba(16, 185, 129, 0.15);
+            --accent-red: #ef4444;
+            --accent-red-dim: rgba(239, 68, 68, 0.15);
+            --accent-orange: #f59e0b;
+            --accent-orange-dim: rgba(245, 158, 11, 0.15);
+            --accent-blue: #3b82f6;
+            --accent-blue-dim: rgba(59, 130, 246, 0.15);
+            --border: #1e293b;
+            --border-light: #334155;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* ========== HEADER ========== */
+        .header {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent-green), #059669);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text span {
+            color: var(--accent-green);
+        }
+
+        .header-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-green);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        /* ========== MAIN LAYOUT ========== */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        /* ========== SECTIONS ========== */
+        .section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            border-color: var(--border-light);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .section-number {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--accent-blue-dim);
+            color: var(--accent-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .section-number.completed {
+            background: var(--accent-green-dim);
+            color: var(--accent-green);
+        }
+
+        .section-number.locked {
+            background: var(--accent-red-dim);
+            color: var(--accent-red);
+        }
+
+        .section-title {
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .section-subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* ========== EMOTIONAL CHECK ========== */
+        .mood-slider-container {
+            margin: 20px 0;
+        }
+
+        .mood-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .mood-slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: linear-gradient(90deg, var(--accent-green) 0%, var(--accent-orange) 50%, var(--accent-red) 100%);
+            -webkit-appearance: none;
+            appearance: none;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .mood-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid var(--accent-blue);
+            cursor: grab;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+            transition: transform 0.15s;
+        }
+
+        .mood-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+        }
+
+        .mood-result {
+            margin-top: 16px;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            display: none;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .mood-result.show {
+            display: flex;
+        }
+
+        .mood-result.calm {
+            background: var(--accent-green-dim);
+            color: var(--accent-green);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .mood-result.warn {
+            background: var(--accent-orange-dim);
+            color: var(--accent-orange);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .mood-result.danger {
+            background: var(--accent-red-dim);
+            color: var(--accent-red);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .mood-icon {
+            font-size: 24px;
+        }
+
+        .mood-text {
+            font-weight: 600;
+        }
+
+        .mood-hint {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 2px;
+        }
+
+        /* ========== RISK CALCULATOR ========== */
+        .calc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        @media (max-width: 600px) {
+            .calc-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .input-group label {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .input-group input, .input-group select {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 14px;
+            color: var(--text-primary);
+            font-size: 15px;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+
+        .input-group input:focus, .input-group select:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px var(--accent-blue-dim);
+        }
+
+        .input-group input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .risk-presets {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+
+        .risk-preset {
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .risk-preset:hover {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+        }
+
+        .risk-preset.active {
+            background: var(--accent-blue-dim);
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+        }
+
+        /* ========== RESULT CARD ========== */
+        .result-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 16px;
+        }
+
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .result-row:last-child {
+            border-bottom: none;
+        }
+
+        .result-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .result-value {
+            font-size: 15px;
+            font-weight: 600;
+            font-family: 'SF Mono', monospace;
+        }
+
+        .result-value.green { color: var(--accent-green); }
+        .result-value.red { color: var(--accent-red); }
+        .result-value.orange { color: var(--accent-orange); }
+        .result-value.blue { color: var(--accent-blue); }
+
+        /* ========== CHECKLIST ========== */
+        .checklist {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 16px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .check-item:hover {
+            border-color: var(--border-light);
+            background: var(--bg-hover);
+        }
+
+        .check-item.checked {
+            border-color: var(--accent-green);
+            background: var(--accent-green-dim);
+        }
+
+        .check-box {
+            width: 22px;
+            height: 22px;
+            border: 2px solid var(--border-light);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.2s;
+            font-size: 13px;
+        }
+
+        .check-item.checked .check-box {
+            background: var(--accent-green);
+            border-color: var(--accent-green);
+            color: white;
+        }
+
+        .check-text {
+            font-size: 14px;
+        }
+
+        .check-hint {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* ========== DRAWDOWN BAR ========== */
+        .drawdown-bar {
+            margin-top: 16px;
+        }
+
+        .drawdown-track {
+            height: 8px;
+            background: var(--bg-secondary);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .drawdown-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease, background 0.3s;
+        }
+
+        .drawdown-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 6px;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* ========== LOCK SCREEN ========== */
+        .lock-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 14, 26, 0.97);
+            backdrop-filter: blur(10px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 24px;
+        }
+
+        .lock-screen.show {
+            display: flex;
+        }
+
+        .lock-card {
+            background: var(--bg-card);
+            border: 1px solid var(--accent-red);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 420px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(239, 68, 68, 0.2);
+        }
+
+        .lock-icon {
+            font-size: 56px;
+            margin-bottom: 16px;
+        }
+
+        .lock-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--accent-red);
+            margin-bottom: 8px;
+        }
+
+        .lock-message {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .lock-timer {
+            font-size: 36px;
+            font-weight: 800;
+            font-family: 'SF Mono', monospace;
+            color: var(--accent-red);
+            margin-bottom: 24px;
+        }
+
+        .lock-btn {
+            background: transparent;
+            border: 1px solid var(--border-light);
+            color: var(--text-secondary);
+            padding: 12px 28px;
+            border-radius: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .lock-btn:hover {
+            border-color: var(--text-primary);
+            color: var(--text-primary);
+        }
+
+        /* ========== PROCEED BUTTON ========== */
+        .proceed-section {
+            text-align: center;
+            padding: 32px 0;
+        }
+
+        .proceed-btn {
+            background: linear-gradient(135deg, var(--accent-green), #059669);
+            color: white;
+            border: none;
+            padding: 16px 48px;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+            letter-spacing: 0.5px;
+        }
+
+        .proceed-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        }
+
+        .proceed-btn:disabled {
+            background: var(--bg-hover);
+            color: var(--text-muted);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .proceed-hint {
+            margin-top: 12px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* ========== TRADE LOG ========== */
+        .trade-log {
+            margin-top: 16px;
+        }
+
+        .log-entry {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            margin-bottom: 6px;
+            font-size: 13px;
+        }
+
+        .log-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .log-dot.win { background: var(--accent-green); }
+        .log-dot.loss { background: var(--accent-red); }
+
+        .log-text {
+            flex: 1;
+        }
+
+        .log-pnl {
+            font-family: monospace;
+            font-weight: 600;
+        }
+
+        .log-pnl.win { color: var(--accent-green); }
+        .log-pnl.loss { color: var(--accent-red); }
+
+        /* ========== TOOLTIP ========== */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+        }
+
+        .tooltip::after {
+            content: attr(data-tip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            z-index: 10;
+        }
+
+        .tooltip:hover::after {
+            opacity: 1;
+        }
+
+        /* ========== ANIMATIONS ========== */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section {
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .section:nth-child(1) { animation-delay: 0.1s; }
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.3s; }
+        .section:nth-child(4) { animation-delay: 0.4s; }
+
+        /* ========== SCROLLBAR ========== */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--border-light);
+        }
+    </style>
+<base target="_blank">
+<base target="_blank">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <div class="logo-icon">🛡️</div>
+            <div class="logo-text">Jowi<span>AlchemyShield</span></div>
+        </div>
+        <div class="header-status">
+            <div class="status-dot"></div>
+            <span>Session Active</span>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- ========== SECTION 1: EMOTIONAL CHECK ========== -->
+        <div class="section" id="section-mood">
+            <div class="section-header">
+                <div class="section-number" id="num-mood">1</div>
+                <div>
+                    <div class="section-title">How are you feeling right now?</div>
+                    <div class="section-subtitle">Be honest. This affects every decision you make.</div>
+                </div>
+            </div>
+
+            <div class="mood-slider-container">
+                <div class="mood-labels">
+                    <span>😌 Calm</span>
+                    <span>😐 Neutral</span>
+                    <span>😤 Stressed</span>
+                    <span>😡 Desperate</span>
+                </div>
+                <input type="range" class="mood-slider" id="moodSlider" min="0" max="100" value="50">
+            </div>
+
+            <div class="mood-result calm" id="moodResultCalm">
+                <div class="mood-icon">✅</div>
+                <div>
+                    <div class="mood-text">You're in a good headspace</div>
+                    <div class="mood-hint">Proceed with your normal risk limits.</div>
+                </div>
+            </div>
+
+            <div class="mood-result warn" id="moodResultWarn">
+                <div class="mood-icon">⚠️</div>
+                <div>
+                    <div class="mood-text">You're a bit off-center</div>
+                    <div class="mood-hint">Consider taking a 10-minute walk before trading. Your call.</div>
+                </div>
+            </div>
+
+            <div class="mood-result danger" id="moodResultDanger">
+                <div class="mood-icon">🛑</div>
+                <div>
+                    <div class="mood-text">Trading paused for 2 hours</div>
+                    <div class="mood-hint">You said you're angry or desperate. That's when $24K becomes $50K. Come back later.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== SECTION 2: RISK CALCULATOR ========== -->
+        <div class="section" id="section-risk">
+            <div class="section-header">
+                <div class="section-number" id="num-risk">2</div>
+                <div>
+                    <div class="section-title">Position Size Calculator</div>
+                    <div class="section-subtitle">Know your risk before you click buy.</div>
+                </div>
+            </div>
+
+            <div class="calc-grid">
+                <div class="input-group">
+                    <label>Account Balance ($)</label>
+                    <input type="number" id="accountBalance" placeholder="10000" value="10000">
+                </div>
+                <div class="input-group">
+                    <label>Risk Per Trade</label>
+                    <select id="riskPercent">
+                        <option value="1">1% (Conservative)</option>
+                        <option value="2" selected>2% (Standard)</option>
+                        <option value="3">3% (Aggressive)</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Entry Price ($)</label>
+                    <input type="number" id="entryPrice" placeholder="110000" value="110660">
+                </div>
+                <div class="input-group">
+                    <label>Stop Loss ($)</label>
+                    <input type="number" id="stopLoss" placeholder="108500" value="108500">
+                </div>
+            </div>
+
+            <div class="result-card" id="riskResult">
+                <div class="result-row">
+                    <span class="result-label">Amount at Risk</span>
+                    <span class="result-value red" id="riskAmount">$200.00</span>
+                </div>
+                <div class="result-row">
+                    <span class="result-label">Position Size</span>
+                    <span class="result-value blue" id="positionSize">0.091 BTC</span>
+                </div>
+                <div class="result-row">
+                    <span class="result-label">Position Value</span>
+                    <span class="result-value" id="positionValue">$10,066.00</span>
+                </div>
+                <div class="result-row">
+                    <span class="result-label">Take Profit (2R)</span>
+                    <span class="result-value green" id="takeProfit">$114,820</span>
+                </div>
+                <div class="result-row">
+                    <span class="result-label">Risk / Reward</span>
+                    <span class="result-value orange" id="riskReward">1 : 2.0</span>
+                </div>
+            </div>
+
+            <div class="drawdown-bar">
+                <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                    <span class="result-label">Today's Drawdown</span>
+                    <span class="result-value" id="todayDD">0.0%</span>
+                </div>
+                <div class="drawdown-track">
+                    <div class="drawdown-fill" id="ddFill" style="width:0%; background:var(--accent-green);"></div>
+                </div>
+                <div class="drawdown-labels">
+                    <span>0%</span>
+                    <span>Warning at -5%</span>
+                    <span>Max -10%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== SECTION 3: PRE-TRADE CHECKLIST ========== -->
+        <div class="section" id="section-checklist">
+            <div class="section-header">
+                <div class="section-number" id="num-check">3</div>
+                <div>
+                    <div class="section-title">Pre-Trade Checklist</div>
+                    <div class="section-subtitle">Three clicks. No exceptions.</div>
+                </div>
+            </div>
+
+            <div class="checklist">
+                <div class="check-item" id="check1" onclick="toggleCheck(1)">
+                    <div class="check-box" id="box1"></div>
+                    <div>
+                        <div class="check-text">I have a stop loss set and I will honor it</div>
+                        <div class="check-hint">No "I'll move it if price goes against me." That's how losses become disasters.</div>
+                    </div>
+                </div>
+                <div class="check-item" id="check2" onclick="toggleCheck(2)">
+                    <div class="check-box" id="box2"></div>
+                    <div>
+                        <div class="check-text">This trade is 2% risk or less</div>
+                        <div class="check-hint">One bad trade should never hurt more than a day's pay.</div>
+                    </div>
+                </div>
+                <div class="check-item" id="check3" onclick="toggleCheck(3)">
+                    <div class="check-box" id="box3"></div>
+                    <div>
+                        <div class="check-text">I'm not trading to recover today's losses</div>
+                        <div class="check-hint">Revenge trading has a 90% failure rate. Tomorrow is another day.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== SECTION 4: TODAY'S CONTEXT ========== -->
+        <div class="section" id="section-context">
+            <div class="section-header">
+                <div class="section-number" id="num-context">4</div>
+                <div>
+                    <div class="section-title">Today's Trading Context</div>
+                    <div class="section-subtitle">Know where you stand before adding risk.</div>
+                </div>
+            </div>
+
+            <div class="result-card">
+                <div class="result-row">
+                    <span class="result-label">Trades Today</span>
+                    <span class="result-value" id="tradesToday">0 / 3</span>
+                </div>
+                <div class="result-row">
+                    <span class="result-label">Consecutive Losses</span>
+                    <span class="result-value" id="consecLosses">0</span>
+                </div>
+                <div class="result-row">
+                    <span class="result-label">Today's P&L</span>
+                    <span class="result-value" id="todayPnL">$0.00 (0.0%)</span>
+                </div>
+                <div class="result-row">
+                    <span class="result-label">This Week's P&L</span>
+                    <span class="result-value" id="weekPnL">$0.00 (0.0%)</span>
+                </div>
+            </div>
+
+            <div class="trade-log" id="tradeLog">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+
+        <!-- ========== PROCEED BUTTON ========== -->
+        <div class="proceed-section">
+            <button class="proceed-btn" id="proceedBtn" onclick="proceedToTrade()" disabled>
+                ✅ Unlock Trading Terminal
+            </button>
+            <div class="proceed-hint" id="proceedHint">Complete all sections above to unlock</div>
+        </div>
+
+    </div>
+
+    <!-- ========== LOCK SCREEN ========== -->
+    <div class="lock-screen" id="lockScreen">
+        <div class="lock-card">
+            <div class="lock-icon">🛑</div>
+            <div class="lock-title">Trading Paused</div>
+            <div class="lock-message" id="lockMessage">
+                Your emotional state suggests you're not ready to trade right now.<br><br>
+                This isn't punishment — it's protection. The market will still be here in 2 hours.
+            </div>
+            <div class="lock-timer" id="lockTimer">02:00:00</div>
+            <button class="lock-btn" onclick="closeLock()">I Understand</button>
+        </div>
+    </div>
+
+    <script>
+        // ========== STATE ==========
+        let state = {
+            mood: 50,
+            moodLocked: false,
+            lockEndTime: null,
+            checks: {1: false, 2: false, 3: false},
+            trades: [],
+            tradesToday: 0,
+            consecLosses: 0,
+            todayPnL: 0,
+            weekPnL: 0
+        };
+
+        // Load from localStorage
+        function loadState() {
+            const saved = localStorage.getItem('jowialchemyshield_state');
+            if (saved) {
+                const parsed = JSON.parse(saved);
+                // Check if lock is still active
+                if (parsed.lockEndTime && Date.now() < parsed.lockEndTime) {
+                    state = parsed;
+                    showLockScreen();
+                } else {
+                    state = {...parsed, moodLocked: false, lockEndTime: null};
+                }
+                // Reset daily stats if new day
+                const lastDate = localStorage.getItem('jowialchemyshield_lastDate');
+                const today = new Date().toDateString();
+                if (lastDate !== today) {
+                    state.tradesToday = 0;
+                    state.todayPnL = 0;
+                    state.consecLosses = 0;
+                    localStorage.setItem('jowialchemyshield_lastDate', today);
+                }
+            }
+            updateUI();
+        }
+
+        function saveState() {
+            localStorage.setItem('jowialchemyshield_state', JSON.stringify(state));
+        }
+
+        // ========== MOOD SLIDER ==========
+        const moodSlider = document.getElementById('moodSlider');
+        const moodResults = {
+            calm: document.getElementById('moodResultCalm'),
+            warn: document.getElementById('moodResultWarn'),
+            danger: document.getElementById('moodResultDanger')
+        };
+
+        moodSlider.addEventListener('input', function() {
+            if (state.moodLocked) return;
+            state.mood = parseInt(this.value);
+            updateMoodDisplay();
+            checkProceed();
+        });
+
+        function updateMoodDisplay() {
+            Object.values(moodResults).forEach(el => el.classList.remove('show'));
+
+            if (state.mood >= 75) {
+                moodResults.danger.classList.add('show');
+                if (!state.moodLocked) {
+                    lockTrading(2 * 60 * 60 * 1000); // 2 hours
+                }
+            } else if (state.mood >= 50) {
+                moodResults.warn.classList.add('show');
+            } else {
+                moodResults.calm.classList.add('show');
+            }
+        }
+
+        function lockTrading(durationMs) {
+            state.moodLocked = true;
+            state.lockEndTime = Date.now() + durationMs;
+            saveState();
+            showLockScreen();
+        }
+
+        function showLockScreen() {
+            document.getElementById('lockScreen').classList.add('show');
+            updateLockTimer();
+            const timerInterval = setInterval(() => {
+                if (!state.lockEndTime || Date.now() >= state.lockEndTime) {
+                    clearInterval(timerInterval);
+                    closeLock();
+                } else {
+                    updateLockTimer();
+                }
+            }, 1000);
+        }
+
+        function updateLockTimer() {
+            if (!state.lockEndTime) return;
+            const remaining = Math.max(0, state.lockEndTime - Date.now());
+            const hours = Math.floor(remaining / 3600000);
+            const mins = Math.floor((remaining % 3600000) / 60000);
+            const secs = Math.floor((remaining % 60000) / 1000);
+            document.getElementById('lockTimer').textContent = 
+                `${String(hours).padStart(2,'0')}:${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`;
+        }
+
+        function closeLock() {
+            document.getElementById('lockScreen').classList.remove('show');
+            if (state.lockEndTime && Date.now() >= state.lockEndTime) {
+                state.moodLocked = false;
+                state.lockEndTime = null;
+                state.mood = 50;
+                moodSlider.value = 50;
+                updateMoodDisplay();
+                saveState();
+            }
+        }
+
+        // ========== RISK CALCULATOR ==========
+        const inputs = ['accountBalance', 'riskPercent', 'entryPrice', 'stopLoss'];
+        inputs.forEach(id => {
+            document.getElementById(id).addEventListener('input', calculateRisk);
+        });
+
+        function calculateRisk() {
+            const balance = parseFloat(document.getElementById('accountBalance').value) || 0;
+            const riskPct = parseFloat(document.getElementById('riskPercent').value) || 2;
+            const entry = parseFloat(document.getElementById('entryPrice').value) || 0;
+            const stop = parseFloat(document.getElementById('stopLoss').value) || 0;
+
+            if (balance > 0 && entry > 0 && stop > 0 && entry !== stop) {
+                const riskAmount = balance * (riskPct / 100);
+                const priceRisk = Math.abs(entry - stop);
+                const positionSize = riskAmount / priceRisk;
+                const positionValue = positionSize * entry;
+                const riskReward = priceRisk > 0 ? (priceRisk * 2) / priceRisk : 0;
+                const takeProfit = entry > stop ? entry + (priceRisk * 2) : entry - (priceRisk * 2);
+
+                document.getElementById('riskAmount').textContent = `$${riskAmount.toFixed(2)}`;
+                document.getElementById('positionSize').textContent = `${positionSize.toFixed(4)} BTC`;
+                document.getElementById('positionValue').textContent = `$${positionValue.toFixed(2)}`;
+                document.getElementById('takeProfit').textContent = `$${takeProfit.toFixed(0)}`;
+                document.getElementById('riskReward').textContent = `1 : ${riskReward.toFixed(1)}`;
+            }
+        }
+
+        // ========== CHECKLIST ==========
+        function toggleCheck(num) {
+            state.checks[num] = !state.checks[num];
+            const item = document.getElementById(`check${num}`);
+            const box = document.getElementById(`box${num}`);
+
+            if (state.checks[num]) {
+                item.classList.add('checked');
+                box.innerHTML = '✓';
+            } else {
+                item.classList.remove('checked');
+                box.innerHTML = '';
+            }
+
+            document.getElementById(`num-check`).className = 
+                allChecksDone() ? 'section-number completed' : 'section-number';
+            checkProceed();
+            saveState();
+        }
+
+        function allChecksDone() {
+            return state.checks[1] && state.checks[2] && state.checks[3];
+        }
+
+        // ========== PROCEED LOGIC ==========
+        function checkProceed() {
+            const btn = document.getElementById('proceedBtn');
+            const hint = document.getElementById('proceedHint');
+
+            if (state.moodLocked) {
+                btn.disabled = true;
+                hint.textContent = 'Trading is locked. Check your emotional state.';
+                return;
+            }
+
+            if (state.mood >= 75) {
+                btn.disabled = true;
+                hint.textContent = 'Adjust your mood slider first.';
+                return;
+            }
+
+            if (!allChecksDone()) {
+                btn.disabled = true;
+                hint.textContent = `Check all 3 boxes (${Object.values(state.checks).filter(Boolean).length}/3 done)`;
+                return;
+            }
+
+            btn.disabled = false;
+            hint.textContent = "You're cleared to trade. Stay disciplined.";
+        }
+
+        function proceedToTrade() {
+            alert('🚀 Trading terminal unlocked!\n\nRemember:\n• Honor your stop loss\n• Don't move it if price goes against you\n• One trade at a time\n\nGood luck, trade safe.');
+            // Here you would redirect to your actual trading interface
+        }
+
+        // ========== UPDATE UI ==========
+        function updateUI() {
+            moodSlider.value = state.mood;
+            updateMoodDisplay();
+            calculateRisk();
+
+            // Restore checks
+            [1, 2, 3].forEach(num => {
+                if (state.checks[num]) {
+                    document.getElementById(`check${num}`).classList.add('checked');
+                    document.getElementById(`box${num}`).innerHTML = '✓';
+                }
+            });
+
+            // Update context
+            document.getElementById('tradesToday').textContent = `${state.tradesToday} / 3`;
+            document.getElementById('consecLosses').textContent = state.consecLosses;
+            document.getElementById('todayPnL').textContent = `$${state.todayPnL.toFixed(2)}`;
+            document.getElementById('weekPnL').textContent = `$${state.weekPnL.toFixed(2)}`;
+
+            // Update drawdown bar
+            const ddPct = Math.abs(Math.min(0, state.todayPnL / (parseFloat(document.getElementById('accountBalance').value) || 10000) * 100));
+            document.getElementById('todayDD').textContent = `-${ddPct.toFixed(1)}%`;
+            document.getElementById('ddFill').style.width = `${Math.min(ddPct * 10, 100)}%`;
+            document.getElementById('ddFill').style.background = ddPct > 5 ? 'var(--accent-red)' : ddPct > 3 ? 'var(--accent-orange)' : 'var(--accent-green)';
+
+            checkProceed();
+        }
+
+        // ========== INIT ==========
+        loadState();
+        calculateRisk();
+    </script>
+</body>
+</html>

@@ -4,201 +4,488 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>JowiAlchemyShield</title>
 
-<!-- GOOGLE FONT -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link
+href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
 
-<!-- CSS LINK -->
-<link rel="stylesheet" href="css/style.css">
+<link
+rel="stylesheet"
+href="css/style.css">
 
 </head>
 
 <body>
 
+
 <!-- HEADER -->
+
 <header class="header">
 
-    <div class="logo">
-        <div class="logo-icon">🛡️</div>
-        <div class="logo-text">Jowi<span>AlchemyShield</span></div>
-    </div>
+<div class="logo">
 
-    <div>Session Active</div>
+<div class="logo-icon">
+
+🛡️
+
+</div>
+
+<div class="logo-text">
+
+Jowi<span>AlchemyShield</span>
+
+</div>
+
+</div>
+
+<div>
+
+Session Active
+
+</div>
 
 </header>
+
+
 
 <div class="container">
 
 
-<!-- ===================== -->
+
 <!-- TRADING CONTEXT -->
-<!-- ===================== -->
 
 <div class="section">
 
-    <div class="section-title">Today's Trading Context</div>
-    <div class="section-sub">Know where you stand before adding risk.</div>
+<div class="section-title">
 
-    <div class="result-card">
+Today's Trading Context
 
-        <div class="result-row">
-            <span>Trades Today</span>
-            <span id="tradesToday">0</span>
-        </div>
+</div>
 
-        <div class="result-row">
-            <span>Consecutive Losses</span>
-            <span id="losses">0 / 3</span>
-        </div>
+<div class="section-sub">
 
-        <div class="result-row">
-            <span>Today's P&L</span>
-            <span id="dailyPnL">$0.00 (0.0%)</span>
-        </div>
-
-        <div class="result-row">
-            <span>This Week's P&L</span>
-            <span id="weeklyPnL">$0.00 (0.0%)</span>
-        </div>
-
-    </div>
+Know where you stand before adding risk.
 
 </div>
 
 
-<!-- ===================== -->
+<div class="result-card">
+
+<div class="result-row">
+
+<span>
+
+Trades Today
+
+</span>
+
+<span id="tradesToday">
+
+0
+
+</span>
+
+</div>
+
+
+<div class="result-row">
+
+<span>
+
+Consecutive Losses
+
+</span>
+
+<span id="losses">
+
+0 / 3
+
+</span>
+
+</div>
+
+
+<div class="result-row">
+
+<span>
+
+Today's P&L
+
+</span>
+
+<span id="dailyPnL">
+
+$0.00 (0.0%)
+
+</span>
+
+</div>
+
+
+<div class="result-row">
+
+<span>
+
+This Week's P&L
+
+</span>
+
+<span id="weeklyPnL">
+
+$0.00 (0.0%)
+
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+
 <!-- EMOTION CHECK -->
-<!-- ===================== -->
 
 <div class="section">
 
-    <div class="section-title">Emotion Check</div>
-    <div class="section-sub">How are you feeling right now?</div>
+<div class="section-title">
 
-    <input type="range" class="mood-slider" id="mood" min="0" max="100" value="50">
+Emotion Check
 
-    <div class="result-box orange show" id="moodResult">
-        Neutral
-    </div>
+</div>
+
+<div class="section-sub">
+
+How are you feeling right now?
 
 </div>
 
 
-<!-- ===================== -->
+<input
+
+type="range"
+
+class="mood-slider"
+
+id="mood"
+
+min="0"
+
+max="100"
+
+value="50">
+
+
+<div
+
+class="result-box orange show"
+
+id="moodResult">
+
+Neutral
+
+</div>
+
+</div>
+
+
+
 <!-- RISK CALCULATOR -->
-<!-- ===================== -->
 
 <div class="section">
 
-    <div class="section-title">Risk Calculator</div>
-    <div class="section-sub">Know your risk before you click buy.</div>
+<div class="section-title">
 
-    <div class="calc-grid">
+Risk Calculator
 
-        <input id="balance" placeholder="Account Balance ($)" value="10000">
+</div>
 
-        <select id="risk">
-            <option value="1">1% (Safe)</option>
-            <option value="2" selected>2% (Standard)</option>
-            <option value="3">3% (Aggressive)</option>
-        </select>
+<div class="section-sub">
 
-        <input id="entry" placeholder="Entry Price ($)" value="110660">
-        <input id="stop" placeholder="Stop Loss ($)" value="108500">
-
-    </div>
-
-    <div class="result-card">
-
-        <div class="result-row">
-            <span>Amount at Risk</span>
-            <span id="riskAmount">$0.00</span>
-        </div>
-
-        <div class="result-row">
-            <span>Position Size</span>
-            <span id="position">0</span>
-        </div>
-
-        <div class="result-row">
-            <span>Take Profit (2R)</span>
-            <span id="tp">0</span>
-        </div>
-
-        <div class="result-row">
-            <span>Risk / Reward</span>
-            <span>1 : 2.0</span>
-        </div>
-
-    </div>
+Know your risk before you click buy.
 
 </div>
 
 
-<!-- ===================== -->
-<!-- DRAWDOWN SYSTEM -->
-<!-- ===================== -->
+<div class="calc-grid">
 
-<div class="section">
+<input
 
-    <div class="section-title">Drawdown Monitor</div>
-    <div class="section-sub">Protect your account from emotional damage.</div>
+id="balance"
 
-    <div class="result-card">
+placeholder="Account Balance ($)"
 
-        <div class="result-row">
-            <span>Today's Drawdown</span>
-            <span>0%</span>
-        </div>
+value="10000">
 
-        <div class="result-row">
-            <span>Warning Level</span>
-            <span>-5%</span>
-        </div>
 
-        <div class="result-row">
-            <span>Max Limit</span>
-            <span>-10%</span>
-        </div>
+<select id="risk">
 
-    </div>
+<option value="1">
+
+1% (Safe)
+
+</option>
+
+<option value="2" selected>
+
+2% (Standard)
+
+</option>
+
+<option value="3">
+
+3% (Aggressive)
+
+</option>
+
+</select>
+
+
+<input
+
+id="entry"
+
+placeholder="Entry Price ($)"
+
+value="110660">
+
+
+<input
+
+id="stop"
+
+placeholder="Stop Loss ($)"
+
+value="108500">
+
 
 </div>
 
 
-<!-- ===================== -->
+
+<div class="result-card">
+
+
+<div class="result-row">
+
+<span>
+
+Amount at Risk
+
+</span>
+
+<span id="riskAmount">
+
+$0
+
+</span>
+
+</div>
+
+
+<div class="result-row">
+
+<span>
+
+Position Size
+
+</span>
+
+<span id="position">
+
+0
+
+</span>
+
+</div>
+
+
+<div class="result-row">
+
+<span>
+
+Take Profit (2R)
+
+</span>
+
+<span id="tp">
+
+0
+
+</span>
+
+</div>
+
+
+<div class="result-row">
+
+<span>
+
+Risk / Reward
+
+</span>
+
+<span>
+
+1 : 2.0
+
+</span>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- DRAWDOWN -->
+
+<div class="section">
+
+<div class="section-title">
+
+Drawdown Monitor
+
+</div>
+
+<div class="section-sub">
+
+Protect your account from emotional damage.
+
+</div>
+
+
+<div class="result-card">
+
+<div class="result-row">
+
+<span>
+
+Today's Drawdown
+
+</span>
+
+<span>
+
+0%
+
+</span>
+
+</div>
+
+
+<div class="result-row">
+
+<span>
+
+Warning Level
+
+</span>
+
+<span>
+
+-5%
+
+</span>
+
+</div>
+
+
+<div class="result-row">
+
+<span>
+
+Max Limit
+
+</span>
+
+<span>
+
+-10%
+
+</span>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+
 <!-- CHECKLIST -->
-<!-- ===================== -->
 
 <div class="section">
 
-    <div class="section-title">Pre-Trade Checklist</div>
-    <div class="section-sub">Three clicks. No exceptions.</div>
+<div class="section-title">
 
-    <label><input type="checkbox"> I have a stop loss set and I will honor it</label>
-    <br><br>
+Pre-Trade Checklist
 
-    <label><input type="checkbox"> This trade is 2% risk or less</label>
-    <br><br>
+</div>
 
-    <label><input type="checkbox"> I am not trading to recover losses</label>
+<div class="section-sub">
+
+Three clicks. No exceptions.
 
 </div>
 
 
-<!-- BUTTON -->
-<button onclick="unlockTrade()">
-    Unlock Trading Terminal
+<label>
+
+<input type="checkbox">
+
+I have a stop loss set and I will honor it
+
+</label>
+
+
+<label>
+
+<input type="checkbox">
+
+This trade is 2% risk or less
+
+</label>
+
+
+<label>
+
+<input type="checkbox">
+
+I am not trading to recover losses
+
+</label>
+
+
+</div>
+
+
+
+
+<button
+
+onclick="unlockTrade()">
+
+Unlock Trading Terminal
+
 </button>
 
 
 </div>
 
-<!-- JS LINK -->
+
 <script src="js/script.js"></script>
 
+
 </body>
+
 </html>

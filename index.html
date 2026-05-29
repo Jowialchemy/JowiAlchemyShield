@@ -56,8 +56,71 @@ Session Active
 <div class="container">
 
 
+<!-- ===================== -->
+<!-- LIVE CRYPTO PRICES -->
+<!-- ===================== -->
 
+<div class="section">
+
+<div class="section-title">
+
+Live Crypto Prices
+
+</div>
+
+<div class="section-sub">
+
+Updated automatically
+
+</div>
+
+<div class="result-card">
+
+<div class="result-row">
+
+<span>BTC</span>
+
+<span id="btcPrice">
+
+Loading...
+
+</span>
+
+</div>
+
+<div class="result-row">
+
+<span>ETH</span>
+
+<span id="ethPrice">
+
+Loading...
+
+</span>
+
+</div>
+
+<div class="result-row">
+
+<span>SOL</span>
+
+<span id="solPrice">
+
+Loading...
+
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- ===================== -->
 <!-- TRADING CONTEXT -->
+<!-- ===================== -->
 
 <div class="section">
 
@@ -73,16 +136,11 @@ Know where you stand before adding risk.
 
 </div>
 
-
 <div class="result-card">
 
 <div class="result-row">
 
-<span>
-
-Trades Today
-
-</span>
+<span>Trades Today</span>
 
 <span id="tradesToday">
 
@@ -92,14 +150,9 @@ Trades Today
 
 </div>
 
-
 <div class="result-row">
 
-<span>
-
-Consecutive Losses
-
-</span>
+<span>Consecutive Losses</span>
 
 <span id="losses">
 
@@ -109,14 +162,9 @@ Consecutive Losses
 
 </div>
 
-
 <div class="result-row">
 
-<span>
-
-Today's P&L
-
-</span>
+<span>Today's P&L</span>
 
 <span id="dailyPnL">
 
@@ -126,14 +174,9 @@ $0.00 (0.0%)
 
 </div>
 
-
 <div class="result-row">
 
-<span>
-
-This Week's P&L
-
-</span>
+<span>This Week's P&L</span>
 
 <span id="weeklyPnL">
 
@@ -149,7 +192,7 @@ $0.00 (0.0%)
 
 
 
-<!-- EMOTION CHECK -->
+<!-- EMOTION -->
 
 <div class="section">
 
@@ -165,7 +208,6 @@ How are you feeling right now?
 
 </div>
 
-
 <input
 
 type="range"
@@ -179,7 +221,6 @@ min="0"
 max="100"
 
 value="50">
-
 
 <div
 
@@ -211,15 +252,11 @@ Know your risk before you click buy.
 
 </div>
 
-
 <div class="calc-grid">
 
 <input
-
 id="balance"
-
 placeholder="Account Balance ($)"
-
 value="10000">
 
 
@@ -247,29 +284,20 @@ value="10000">
 
 
 <input
-
 id="entry"
-
 placeholder="Entry Price ($)"
-
 value="110660">
 
 
 <input
-
 id="stop"
-
 placeholder="Stop Loss ($)"
-
 value="108500">
-
 
 </div>
 
 
-
 <div class="result-card">
-
 
 <div class="result-row">
 
@@ -338,7 +366,6 @@ Risk / Reward
 
 </div>
 
-
 </div>
 
 </div>
@@ -361,7 +388,6 @@ Protect your account from emotional damage.
 
 </div>
 
-
 <div class="result-card">
 
 <div class="result-row">
@@ -380,7 +406,6 @@ Today's Drawdown
 
 </div>
 
-
 <div class="result-row">
 
 <span>
@@ -396,7 +421,6 @@ Warning Level
 </span>
 
 </div>
-
 
 <div class="result-row">
 
@@ -414,11 +438,9 @@ Max Limit
 
 </div>
 
-
 </div>
 
 </div>
-
 
 
 
@@ -465,14 +487,11 @@ I am not trading to recover losses
 
 </label>
 
-
 </div>
 
 
 
-
 <button
-
 onclick="unlockTrade()">
 
 Unlock Trading Terminal
@@ -483,8 +502,8 @@ Unlock Trading Terminal
 </div>
 
 
-<script src="js/script.js"></script>
 
+<script src="js/script.js"></script>
 
 </body>
 

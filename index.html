@@ -4,629 +4,201 @@
 <head>
 
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>JowiAlchemyShield</title>
 
+<!-- GOOGLE FONT -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-<style>
-
-:root{
-
---bg-primary:#0a0e1a;
---bg-secondary:#111827;
---bg-card:#1a2332;
-
---text-primary:#f1f5f9;
---text-secondary:#94a3b8;
---text-muted:#64748b;
-
---green:#10b981;
---red:#ef4444;
---orange:#f59e0b;
---blue:#3b82f6;
-
---border:#1e293b;
-
-}
-
-*{
-
-margin:0;
-padding:0;
-box-sizing:border-box;
-
-}
-
-body{
-
-font-family:'Inter',sans-serif;
-background:var(--bg-primary);
-color:var(--text-primary);
-overflow-x:hidden;
-min-height:100vh;
-
-}
-
-.header{
-
-display:flex;
-justify-content:space-between;
-align-items:center;
-
-padding:18px;
-
-background:var(--bg-secondary);
-
-border-bottom:1px solid var(--border);
-
-position:sticky;
-
-top:0;
-
-z-index:100;
-
-}
-
-.logo{
-
-display:flex;
-align-items:center;
-gap:10px;
-
-}
-
-.logo-icon{
-
-width:40px;
-height:40px;
-
-border-radius:12px;
-
-background:
-linear-gradient(
-135deg,
-var(--green),
-#059669);
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-font-size:20px;
-
-}
-
-.logo-text{
-
-font-size:21px;
-font-weight:800;
-
-}
-
-.logo-text span{
-
-color:var(--green);
-
-}
-
-.container{
-
-max-width:900px;
-
-margin:auto;
-
-padding:18px;
-
-}
-
-.section{
-
-background:var(--bg-card);
-
-padding:24px;
-
-border-radius:18px;
-
-margin-bottom:20px;
-
-border:1px solid var(--border);
-
-}
-
-.section-title{
-
-font-size:18px;
-
-font-weight:700;
-
-margin-bottom:8px;
-
-}
-
-.section-sub{
-
-font-size:13px;
-
-color:var(--text-muted);
-
-margin-bottom:20px;
-
-}
-
-.mood-slider{
-
-width:100%;
-
-height:8px;
-
-appearance:none;
-
-border-radius:20px;
-
-background:
-linear-gradient(
-90deg,
-green,
-orange,
-red);
-
-}
-
-.mood-slider::-webkit-slider-thumb{
-
-appearance:none;
-
-width:24px;
-
-height:24px;
-
-border-radius:50%;
-
-background:white;
-
-cursor:pointer;
-
-}
-
-.result-box{
-
-padding:16px;
-
-border-radius:14px;
-
-margin-top:18px;
-
-display:none;
-
-}
-
-.green{
-
-background:
-rgba(16,185,129,.1);
-
-color:var(--green);
-
-}
-
-.orange{
-
-background:
-rgba(245,158,11,.1);
-
-color:var(--orange);
-
-}
-
-.red{
-
-background:
-rgba(239,68,68,.1);
-
-color:var(--red);
-
-}
-
-.show{
-
-display:block;
-
-}
-
-.calc-grid{
-
-display:grid;
-
-grid-template-columns:1fr 1fr;
-
-gap:16px;
-
-}
-
-input,
-select{
-
-width:100%;
-
-padding:14px;
-
-background:#111827;
-
-border:1px solid var(--border);
-
-border-radius:12px;
-
-color:white;
-
-}
-
-.result-card{
-
-margin-top:20px;
-
-padding:20px;
-
-background:#111827;
-
-border-radius:16px;
-
-}
-
-.result-row{
-
-display:flex;
-
-justify-content:space-between;
-
-margin:12px 0;
-
-}
-
-button{
-
-width:100%;
-
-padding:16px;
-
-border:none;
-
-border-radius:14px;
-
-background:var(--green);
-
-color:white;
-
-font-size:16px;
-
-font-weight:bold;
-
-cursor:pointer;
-
-margin-top:20px;
-
-}
-
-@media(max-width:700px){
-
-.calc-grid{
-
-grid-template-columns:1fr;
-
-}
-
-.section{
-
-padding:18px;
-
-}
-
-.logo-text{
-
-font-size:18px;
-
-}
-
-}
-
-</style>
+<!-- CSS LINK -->
+<link rel="stylesheet" href="css/style.css">
 
 </head>
 
 <body>
 
-
+<!-- HEADER -->
 <header class="header">
 
-<div class="logo">
+    <div class="logo">
+        <div class="logo-icon">🛡️</div>
+        <div class="logo-text">Jowi<span>AlchemyShield</span></div>
+    </div>
 
-<div class="logo-icon">
-
-🛡️
-
-</div>
-
-<div class="logo-text">
-
-Jowi<span>AlchemyShield</span>
-
-</div>
-
-</div>
-
-<div>
-
-Session Active
-
-</div>
+    <div>Session Active</div>
 
 </header>
-
-
 
 <div class="container">
 
 
-<div class="section">
-
-<div class="section-title">
-
-How are you feeling right now?
-
-</div>
-
-<div class="section-sub">
-
-Be honest. This affects every decision you make.
-
-</div>
-
-<input
-type="range"
-class="mood-slider"
-id="mood"
-min="0"
-max="100"
-value="50">
-
-<div
-class="result-box orange show"
-id="moodResult">
-
-Neutral
-
-</div>
-
-</div>
-
-
+<!-- ===================== -->
+<!-- TRADING CONTEXT -->
+<!-- ===================== -->
 
 <div class="section">
 
-<div class="section-title">
+    <div class="section-title">Today's Trading Context</div>
+    <div class="section-sub">Know where you stand before adding risk.</div>
 
-Position Size Calculator
+    <div class="result-card">
 
-</div>
+        <div class="result-row">
+            <span>Trades Today</span>
+            <span id="tradesToday">0</span>
+        </div>
 
-<div class="section-sub">
+        <div class="result-row">
+            <span>Consecutive Losses</span>
+            <span id="losses">0 / 3</span>
+        </div>
 
-Know your risk before you click buy
+        <div class="result-row">
+            <span>Today's P&L</span>
+            <span id="dailyPnL">$0.00 (0.0%)</span>
+        </div>
 
-</div>
+        <div class="result-row">
+            <span>This Week's P&L</span>
+            <span id="weeklyPnL">$0.00 (0.0%)</span>
+        </div>
 
-<div class="calc-grid">
-
-<input
-id="balance"
-placeholder="Balance"
-value="10000">
-
-<select id="risk">
-
-<option value="1">
-
-1%
-
-</option>
-
-<option value="2" selected>
-
-2%
-
-</option>
-
-<option value="3">
-
-3%
-
-</option>
-
-</select>
-
-<input
-id="entry"
-value="110660">
-
-<input
-id="stop"
-value="108500">
-
-</div>
-
-<div class="result-card">
-
-<div class="result-row">
-
-<span>
-
-Risk Amount
-
-</span>
-
-<span id="riskAmount">
-
-$200
-
-</span>
-
-</div>
-
-<div class="result-row">
-
-<span>
-
-Position Size
-
-</span>
-
-<span id="position">
-
-0.09 BTC
-
-</span>
-
-</div>
-
-<div class="result-row">
-
-<span>
-
-Take Profit
-
-</span>
-
-<span id="tp">
-
-114980
-
-</span>
-
-</div>
-
-</div>
+    </div>
 
 </div>
 
 
+<!-- ===================== -->
+<!-- EMOTION CHECK -->
+<!-- ===================== -->
 
 <div class="section">
 
-<div class="section-title">
+    <div class="section-title">Emotion Check</div>
+    <div class="section-sub">How are you feeling right now?</div>
 
-Pre Trade Checklist
+    <input type="range" class="mood-slider" id="mood" min="0" max="100" value="50">
 
-</div>
-
-<label>
-
-<input type="checkbox">
-
-Stop loss set
-
-</label>
-
-<br><br>
-
-<label>
-
-<input type="checkbox">
-
-Risk below 2%
-
-</label>
-
-<br><br>
-
-<label>
-
-<input type="checkbox">
-
-Not revenge trading
-
-</label>
+    <div class="result-box orange show" id="moodResult">
+        Neutral
+    </div>
 
 </div>
 
 
+<!-- ===================== -->
+<!-- RISK CALCULATOR -->
+<!-- ===================== -->
+
+<div class="section">
+
+    <div class="section-title">Risk Calculator</div>
+    <div class="section-sub">Know your risk before you click buy.</div>
+
+    <div class="calc-grid">
+
+        <input id="balance" placeholder="Account Balance ($)" value="10000">
+
+        <select id="risk">
+            <option value="1">1% (Safe)</option>
+            <option value="2" selected>2% (Standard)</option>
+            <option value="3">3% (Aggressive)</option>
+        </select>
+
+        <input id="entry" placeholder="Entry Price ($)" value="110660">
+        <input id="stop" placeholder="Stop Loss ($)" value="108500">
+
+    </div>
+
+    <div class="result-card">
+
+        <div class="result-row">
+            <span>Amount at Risk</span>
+            <span id="riskAmount">$0.00</span>
+        </div>
+
+        <div class="result-row">
+            <span>Position Size</span>
+            <span id="position">0</span>
+        </div>
+
+        <div class="result-row">
+            <span>Take Profit (2R)</span>
+            <span id="tp">0</span>
+        </div>
+
+        <div class="result-row">
+            <span>Risk / Reward</span>
+            <span>1 : 2.0</span>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ===================== -->
+<!-- DRAWDOWN SYSTEM -->
+<!-- ===================== -->
+
+<div class="section">
+
+    <div class="section-title">Drawdown Monitor</div>
+    <div class="section-sub">Protect your account from emotional damage.</div>
+
+    <div class="result-card">
+
+        <div class="result-row">
+            <span>Today's Drawdown</span>
+            <span>0%</span>
+        </div>
+
+        <div class="result-row">
+            <span>Warning Level</span>
+            <span>-5%</span>
+        </div>
+
+        <div class="result-row">
+            <span>Max Limit</span>
+            <span>-10%</span>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ===================== -->
+<!-- CHECKLIST -->
+<!-- ===================== -->
+
+<div class="section">
+
+    <div class="section-title">Pre-Trade Checklist</div>
+    <div class="section-sub">Three clicks. No exceptions.</div>
+
+    <label><input type="checkbox"> I have a stop loss set and I will honor it</label>
+    <br><br>
+
+    <label><input type="checkbox"> This trade is 2% risk or less</label>
+    <br><br>
+
+    <label><input type="checkbox"> I am not trading to recover losses</label>
+
+</div>
+
+
+<!-- BUTTON -->
 <button onclick="unlockTrade()">
-
-Unlock Trading Terminal
-
+    Unlock Trading Terminal
 </button>
 
 
 </div>
 
-
-
-<script>
-
-const mood=document.getElementById("mood")
-
-const moodResult=
-document.getElementById(
-"moodResult"
-)
-
-mood.addEventListener(
-"input",
-()=>{
-
-let value=
-parseInt(
-mood.value
-)
-
-if(value<40){
-
-moodResult.className=
-"result-box green show"
-
-moodResult.innerHTML=
-"Calm"
-
-}
-
-else if(value<70){
-
-moodResult.className=
-"result-box orange show"
-
-moodResult.innerHTML=
-"Caution"
-
-}
-
-else{
-
-moodResult.className=
-"result-box red show"
-
-moodResult.innerHTML=
-"Do NOT Trade"
-
-}
-
-}
-
-)
-
-function unlockTrade(){
-
-alert(
-"Trading Terminal Unlocked"
-)
-
-}
-
-</script>
+<!-- JS LINK -->
+<script src="js/script.js"></script>
 
 </body>
-
 </html>

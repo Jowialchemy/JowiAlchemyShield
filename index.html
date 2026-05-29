@@ -23,8 +23,6 @@ href="css/style.css">
 <body>
 
 
-<!-- HEADER -->
-
 <header class="header">
 
 <div class="logo">
@@ -56,143 +54,10 @@ Session Active
 <div class="container">
 
 
-<!-- ===================== -->
-<!-- LIVE CRYPTO PRICES -->
-<!-- ===================== -->
-
-<div class="section">
-
-<div class="section-title">
-
-Live Crypto Prices
-
-</div>
-
-<div class="section-sub">
-
-Updated automatically
-
-</div>
-
-<div class="result-card">
-
-<div class="result-row">
-
-<span>BTC</span>
-
-<span id="btcPrice">
-
-Loading...
-
-</span>
-
-</div>
-
-<div class="result-row">
-
-<span>ETH</span>
-
-<span id="ethPrice">
-
-Loading...
-
-</span>
-
-</div>
-
-<div class="result-row">
-
-<span>SOL</span>
-
-<span id="solPrice">
-
-Loading...
-
-</span>
-
-</div>
-
-</div>
-
-</div>
-
-
 
 <!-- ===================== -->
-<!-- TRADING CONTEXT -->
+<!-- EMOTION CHECK -->
 <!-- ===================== -->
-
-<div class="section">
-
-<div class="section-title">
-
-Today's Trading Context
-
-</div>
-
-<div class="section-sub">
-
-Know where you stand before adding risk.
-
-</div>
-
-<div class="result-card">
-
-<div class="result-row">
-
-<span>Trades Today</span>
-
-<span id="tradesToday">
-
-0
-
-</span>
-
-</div>
-
-<div class="result-row">
-
-<span>Consecutive Losses</span>
-
-<span id="losses">
-
-0 / 3
-
-</span>
-
-</div>
-
-<div class="result-row">
-
-<span>Today's P&L</span>
-
-<span id="dailyPnL">
-
-$0.00 (0.0%)
-
-</span>
-
-</div>
-
-<div class="result-row">
-
-<span>This Week's P&L</span>
-
-<span id="weeklyPnL">
-
-$0.00 (0.0%)
-
-</span>
-
-</div>
-
-</div>
-
-</div>
-
-
-
-<!-- EMOTION -->
 
 <div class="section">
 
@@ -236,7 +101,77 @@ Neutral
 
 
 
+
+<!-- ===================== -->
+<!-- LIVE CRYPTO -->
+<!-- ===================== -->
+
+<div class="section">
+
+<div class="section-title">
+
+Live Crypto Prices
+
+</div>
+
+<div class="section-sub">
+
+Updated automatically
+
+</div>
+
+<div class="result-card">
+
+
+<div class="result-row">
+
+<span>BTC</span>
+
+<span id="btcPrice">
+
+Loading...
+
+</span>
+
+</div>
+
+
+<div class="result-row">
+
+<span>ETH</span>
+
+<span id="ethPrice">
+
+Loading...
+
+</span>
+
+</div>
+
+
+<div class="result-row">
+
+<span>SOL</span>
+
+<span id="solPrice">
+
+Loading...
+
+</span>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+
+<!-- ===================== -->
 <!-- RISK CALCULATOR -->
+<!-- ===================== -->
 
 <div class="section">
 
@@ -252,11 +187,16 @@ Know your risk before you click buy.
 
 </div>
 
+
 <div class="calc-grid">
 
+
 <input
+
 id="balance"
+
 placeholder="Account Balance ($)"
+
 value="10000">
 
 
@@ -264,19 +204,19 @@ value="10000">
 
 <option value="1">
 
-1% (Safe)
+1% Safe
 
 </option>
 
 <option value="2" selected>
 
-2% (Standard)
+2% Standard
 
 </option>
 
 <option value="3">
 
-3% (Aggressive)
+3% Aggressive
 
 </option>
 
@@ -284,17 +224,25 @@ value="10000">
 
 
 <input
+
 id="entry"
-placeholder="Entry Price ($)"
+
+placeholder="Entry Price"
+
 value="110660">
 
 
 <input
+
 id="stop"
-placeholder="Stop Loss ($)"
+
+placeholder="Stop Loss"
+
 value="108500">
 
+
 </div>
+
 
 
 <div class="result-card">
@@ -366,13 +314,17 @@ Risk / Reward
 
 </div>
 
-</div>
 
 </div>
 
+</div>
 
 
+
+
+<!-- ===================== -->
 <!-- DRAWDOWN -->
+<!-- ===================== -->
 
 <div class="section">
 
@@ -387,6 +339,7 @@ Drawdown Monitor
 Protect your account from emotional damage.
 
 </div>
+
 
 <div class="result-card">
 
@@ -406,6 +359,7 @@ Today's Drawdown
 
 </div>
 
+
 <div class="result-row">
 
 <span>
@@ -421,6 +375,7 @@ Warning Level
 </span>
 
 </div>
+
 
 <div class="result-row">
 
@@ -444,7 +399,106 @@ Max Limit
 
 
 
+
+<!-- ===================== -->
+<!-- TRADING CONTEXT -->
+<!-- ===================== -->
+
+<div class="section">
+
+<div class="section-title">
+
+Today's Trading Context
+
+</div>
+
+<div class="section-sub">
+
+Know where you stand before adding risk.
+
+</div>
+
+
+<div class="result-card">
+
+<div class="result-row">
+
+<span>
+
+Trades Today
+
+</span>
+
+<span id="tradesToday">
+
+0
+
+</span>
+
+</div>
+
+
+<div class="result-row">
+
+<span>
+
+Consecutive Losses
+
+</span>
+
+<span id="losses">
+
+0 / 3
+
+</span>
+
+</div>
+
+
+<div class="result-row">
+
+<span>
+
+Today's P&L
+
+</span>
+
+<span id="dailyPnL">
+
+$0.00
+
+</span>
+
+</div>
+
+
+<div class="result-row">
+
+<span>
+
+This Week's P&L
+
+</span>
+
+<span id="weeklyPnL">
+
+$0.00
+
+</span>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+
+<!-- ===================== -->
 <!-- CHECKLIST -->
+<!-- ===================== -->
 
 <div class="section">
 
@@ -487,20 +541,21 @@ I am not trading to recover losses
 
 </label>
 
+
 </div>
 
 
 
-<button
-onclick="unlockTrade()">
+
+<button onclick="unlockTrade()">
 
 Unlock Trading Terminal
 
 </button>
 
 
-</div>
 
+</div>
 
 
 <script src="js/script.js"></script>

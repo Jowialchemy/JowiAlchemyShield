@@ -1,115 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0">
 
 <title>JowiAlchemyShield</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
 :root{
 
---bg:#050816;
---card:#0b1225;
+--bg-primary:#0a0e1a;
+--bg-secondary:#111827;
+--bg-card:#1a2332;
 
---border:#1f2a44;
+--text-primary:#f1f5f9;
+--text-secondary:#94a3b8;
+--text-muted:#64748b;
 
---green:#18d39e;
-
+--green:#10b981;
+--red:#ef4444;
+--orange:#f59e0b;
 --blue:#3b82f6;
 
---red:#ff4d4d;
-
---orange:#f5a623;
-
---text:#ffffff;
-
---muted:#98a2b3;
+--border:#1e293b;
 
 }
 
 *{
+
 margin:0;
 padding:0;
 box-sizing:border-box;
+
 }
 
 body{
 
-font-family:Arial,Helvetica,sans-serif;
-
-background:var(--bg);
-
-color:white;
+font-family:'Inter',sans-serif;
+background:var(--bg-primary);
+color:var(--text-primary);
+overflow-x:hidden;
+min-height:100vh;
 
 }
 
 .header{
 
 display:flex;
-
 justify-content:space-between;
-
 align-items:center;
 
-padding:20px;
+padding:18px;
+
+background:var(--bg-secondary);
 
 border-bottom:1px solid var(--border);
-
-background:#07101f;
 
 position:sticky;
 
 top:0;
 
-z-index:50;
+z-index:100;
 
 }
 
 .logo{
 
 display:flex;
-
 align-items:center;
-
-gap:12px;
-
-font-size:32px;
-
-font-weight:700;
-
-}
-
-.logo span{
-
-color:var(--green);
+gap:10px;
 
 }
 
 .logo-icon{
 
-width:52px;
+width:40px;
+height:40px;
 
-height:52px;
+border-radius:12px;
 
-background:#083a24;
-
-border-radius:14px;
+background:
+linear-gradient(
+135deg,
+var(--green),
+#059669);
 
 display:flex;
 
-justify-content:center;
-
 align-items:center;
 
-font-size:26px;
+justify-content:center;
+
+font-size:20px;
 
 }
 
-.status{
+.logo-text{
 
-color:#9ca3af;
+font-size:21px;
+font-weight:800;
+
+}
+
+.logo-text span{
+
+color:var(--green);
 
 }
 
@@ -119,67 +121,27 @@ max-width:900px;
 
 margin:auto;
 
-padding:25px;
+padding:18px;
 
 }
 
-.card{
+.section{
 
-background:var(--card);
+background:var(--bg-card);
+
+padding:24px;
+
+border-radius:18px;
+
+margin-bottom:20px;
 
 border:1px solid var(--border);
 
-border-radius:28px;
-
-padding:35px;
-
-margin-bottom:25px;
-
-box-shadow:
-
-0 0 40px rgba(0,0,0,.4);
-
 }
 
-.section-top{
+.section-title{
 
-display:flex;
-
-gap:18px;
-
-align-items:flex-start;
-
-margin-bottom:30px;
-
-}
-
-.num{
-
-width:52px;
-
-height:52px;
-
-background:#081633;
-
-border-radius:50%;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-font-size:24px;
-
-font-weight:bold;
-
-color:#4ea3ff;
-
-}
-
-.title{
-
-font-size:42px;
+font-size:18px;
 
 font-weight:700;
 
@@ -187,237 +149,186 @@ margin-bottom:8px;
 
 }
 
-.subtitle{
+.section-sub{
 
-color:var(--muted);
+font-size:13px;
 
-font-size:24px;
-
-}
-
-.slider-labels{
-
-display:flex;
-
-justify-content:space-between;
+color:var(--text-muted);
 
 margin-bottom:20px;
 
-font-size:22px;
-
 }
 
-input[type=range]{
+.mood-slider{
 
 width:100%;
 
-height:12px;
+height:8px;
+
+appearance:none;
 
 border-radius:20px;
 
 background:
-
 linear-gradient(
-
 90deg,
-
 green,
-
 orange,
-
 red);
-
-appearance:none;
 
 }
 
-input[type=range]::-webkit-slider-thumb{
+.mood-slider::-webkit-slider-thumb{
 
 appearance:none;
 
-width:36px;
+width:24px;
 
-height:36px;
+height:24px;
 
 border-radius:50%;
 
-background:#2563eb;
-
-border:4px solid #0f172a;
-
-}
-
-.result{
-
-margin-top:25px;
-
-font-size:30px;
-
-font-weight:bold;
-
-}
-
-.grid{
-
-display:grid;
-
-grid-template-columns:1fr;
-
-gap:20px;
-
-}
-
-label{
-
-display:block;
-
-margin-bottom:8px;
-
-font-size:14px;
-
-color:#9ca3af;
-
-}
-
-input,select{
-
-width:100%;
-
-padding:20px;
-
-border-radius:18px;
-
-border:1px solid var(--border);
-
-background:#081120;
-
-color:white;
-
-font-size:28px;
-
-}
-
-.result-box{
-
-margin-top:30px;
-
-background:#07101f;
-
-padding:25px;
-
-border-radius:20px;
-
-}
-
-.row{
-
-display:flex;
-
-justify-content:space-between;
-
-padding:12px 0;
-
-font-size:28px;
-
-}
-
-.check{
-
-padding:22px;
-
-background:#081120;
-
-border-radius:18px;
-
-margin-bottom:14px;
-
-display:flex;
-
-gap:15px;
+background:white;
 
 cursor:pointer;
 
 }
 
-.check.active{
+.result-box{
 
-border:2px solid var(--green);
+padding:16px;
 
-}
+border-radius:14px;
 
-.check-box{
+margin-top:18px;
 
-width:32px;
-
-height:32px;
-
-border:2px solid white;
+display:none;
 
 }
 
-.unlock{
+.green{
+
+background:
+rgba(16,185,129,.1);
+
+color:var(--green);
+
+}
+
+.orange{
+
+background:
+rgba(245,158,11,.1);
+
+color:var(--orange);
+
+}
+
+.red{
+
+background:
+rgba(239,68,68,.1);
+
+color:var(--red);
+
+}
+
+.show{
+
+display:block;
+
+}
+
+.calc-grid{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:16px;
+
+}
+
+input,
+select{
 
 width:100%;
 
-padding:24px;
+padding:14px;
 
-font-size:30px;
+background:#111827;
 
-font-weight:bold;
+border:1px solid var(--border);
 
-border:none;
-
-border-radius:20px;
-
-background:linear-gradient(
-
-90deg,
-
-#10b981,
-
-#059669);
+border-radius:12px;
 
 color:white;
 
-margin-top:30px;
+}
+
+.result-card{
+
+margin-top:20px;
+
+padding:20px;
+
+background:#111827;
+
+border-radius:16px;
 
 }
 
-.unlock:disabled{
+.result-row{
 
-opacity:.4;
+display:flex;
+
+justify-content:space-between;
+
+margin:12px 0;
+
+}
+
+button{
+
+width:100%;
+
+padding:16px;
+
+border:none;
+
+border-radius:14px;
+
+background:var(--green);
+
+color:white;
+
+font-size:16px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+margin-top:20px;
 
 }
 
 @media(max-width:700px){
 
-.title{
+.calc-grid{
 
-font-size:26px;
+grid-template-columns:1fr;
 
 }
 
-.subtitle{
+.section{
+
+padding:18px;
+
+}
+
+.logo-text{
 
 font-size:18px;
-
-}
-
-.row{
-
-font-size:18px;
-
-}
-
-input,select{
-
-font-size:20px;
-
-}
-
-.unlock{
-
-font-size:22px;
 
 }
 
@@ -429,6 +340,7 @@ font-size:22px;
 
 <body>
 
+
 <header class="header">
 
 <div class="logo">
@@ -439,7 +351,7 @@ font-size:22px;
 
 </div>
 
-<div>
+<div class="logo-text">
 
 Jowi<span>AlchemyShield</span>
 
@@ -447,7 +359,7 @@ Jowi<span>AlchemyShield</span>
 
 </div>
 
-<div class="status">
+<div>
 
 Session Active
 
@@ -455,165 +367,101 @@ Session Active
 
 </header>
 
+
+
 <div class="container">
 
-<div class="card">
 
-<div class="section-top">
+<div class="section">
 
-<div class="num">
-
-1
-
-</div>
-
-<div>
-
-<div class="title">
+<div class="section-title">
 
 How are you feeling right now?
 
 </div>
 
-<div class="subtitle">
+<div class="section-sub">
 
 Be honest. This affects every decision you make.
 
 </div>
 
-</div>
-
-</div>
-
-<div class="slider-labels">
-
-<span>😌 Calm</span>
-
-<span>😐 Neutral</span>
-
-<span>😤 Stressed</span>
-
-<span>😡 Desperate</span>
-
-</div>
-
-<input id="mood"
-
+<input
 type="range"
-
+class="mood-slider"
+id="mood"
 min="0"
-
 max="100"
-
 value="50">
 
-<div class="result"
+<div
+class="result-box orange show"
+id="moodResult">
 
-id="moodText">
-
-Caution
-
-</div>
+Neutral
 
 </div>
 
-<div class="card">
-
-<div class="section-top">
-
-<div class="num">
-
-2
-
 </div>
 
-<div>
 
-<div class="title">
+
+<div class="section">
+
+<div class="section-title">
 
 Position Size Calculator
 
 </div>
 
-<div class="subtitle">
+<div class="section-sub">
 
-Know your risk before you click buy.
-
-</div>
+Know your risk before you click buy
 
 </div>
 
-</div>
+<div class="calc-grid">
 
-<div class="grid">
-
-<div>
-
-<label>
-
-ACCOUNT BALANCE
-
-</label>
-
-<input id="balance"
-
+<input
+id="balance"
+placeholder="Balance"
 value="10000">
-
-</div>
-
-<div>
-
-<label>
-
-RISK %
-
-</label>
 
 <select id="risk">
 
-<option>1</option>
+<option value="1">
 
-<option selected>2</option>
+1%
 
-<option>3</option>
+</option>
+
+<option value="2" selected>
+
+2%
+
+</option>
+
+<option value="3">
+
+3%
+
+</option>
 
 </select>
 
-</div>
-
-<div>
-
-<label>
-
-ENTRY PRICE
-
-</label>
-
-<input id="entry"
-
+<input
+id="entry"
 value="110660">
 
-</div>
-
-<div>
-
-<label>
-
-STOP LOSS
-
-</label>
-
-<input id="stop"
-
+<input
+id="stop"
 value="108500">
 
 </div>
 
-</div>
+<div class="result-card">
 
-<div class="result-box">
-
-<div class="row">
+<div class="result-row">
 
 <span>
 
@@ -629,7 +477,7 @@ $200
 
 </div>
 
-<div class="row">
+<div class="result-row">
 
 <span>
 
@@ -639,13 +487,13 @@ Position Size
 
 <span id="position">
 
-0.09
+0.09 BTC
 
 </span>
 
 </div>
 
-<div class="row">
+<div class="result-row">
 
 <span>
 
@@ -653,7 +501,7 @@ Take Profit
 
 </span>
 
-<span id="profit">
+<span id="tp">
 
 114980
 
@@ -665,225 +513,117 @@ Take Profit
 
 </div>
 
-<div class="card">
 
-<div class="section-top">
 
-<div class="num">
+<div class="section">
 
-3
+<div class="section-title">
 
-</div>
-
-<div>
-
-<div class="title">
-
-Checklist
+Pre Trade Checklist
 
 </div>
 
-<div class="subtitle">
+<label>
 
-No exceptions.
+<input type="checkbox">
 
-</div>
+Stop loss set
 
-</div>
+</label>
 
-</div>
+<br><br>
 
-<div class="check"
+<label>
 
-onclick="toggle(this)">
+<input type="checkbox">
 
-<div class="check-box">
+Risk below 2%
 
-</div>
+</label>
 
-<div>
+<br><br>
 
-I have a stop loss
+<label>
 
-</div>
+<input type="checkbox">
 
-</div>
+Not revenge trading
 
-<div class="check"
-
-onclick="toggle(this)">
-
-<div class="check-box">
+</label>
 
 </div>
 
-<div>
 
-Risk is under 2%
-
-</div>
-
-</div>
-
-<div class="check"
-
-onclick="toggle(this)">
-
-<div class="check-box">
-
-</div>
-
-<div>
-
-I am not revenge trading
-
-</div>
-
-</div>
-
-<button
-
-class="unlock"
-
-id="unlock"
-
-disabled>
+<button onclick="unlockTrade()">
 
 Unlock Trading Terminal
 
 </button>
 
-</div>
 
 </div>
+
+
 
 <script>
 
-const mood=document.getElementById("mood");
+const mood=document.getElementById("mood")
 
-const moodText=document.getElementById("moodText");
+const moodResult=
+document.getElementById(
+"moodResult"
+)
 
-mood.oninput=()=>{
+mood.addEventListener(
+"input",
+()=>{
 
-if(mood.value<40){
+let value=
+parseInt(
+mood.value
+)
 
-moodText.innerHTML="Good Headspace";
+if(value<40){
 
-moodText.style.color="#18d39e";
+moodResult.className=
+"result-box green show"
+
+moodResult.innerHTML=
+"Calm"
 
 }
 
-else if(mood.value<75){
+else if(value<70){
 
-moodText.innerHTML="Caution";
+moodResult.className=
+"result-box orange show"
 
-moodText.style.color="#f5a623";
+moodResult.innerHTML=
+"Caution"
 
 }
 
 else{
 
-moodText.innerHTML="Trading Paused";
+moodResult.className=
+"result-box red show"
 
-moodText.style.color="#ff4d4d";
-
-}
-
-check();
+moodResult.innerHTML=
+"Do NOT Trade"
 
 }
 
-function calc(){
-
-let balance=
-
-parseFloat(balanceInput.value)||0;
-
-let risk=
-
-parseFloat(riskInput.value)||2;
-
-let entry=
-
-parseFloat(entryInput.value)||0;
-
-let stop=
-
-parseFloat(stopInput.value)||0;
-
-let riskAmount=
-
-balance*(risk/100);
-
-let diff=
-
-Math.abs(entry-stop);
-
-let size=
-
-riskAmount/diff;
-
-document.getElementById("riskAmount").innerHTML=
-
-"$"+riskAmount.toFixed(2);
-
-document.getElementById("position").innerHTML=
-
-size.toFixed(4);
-
-document.getElementById("profit").innerHTML=
-
-(entry+(diff*2)).toFixed(0);
-
 }
 
-const balanceInput=document.getElementById("balance");
+)
 
-const riskInput=document.getElementById("risk");
-
-const entryInput=document.getElementById("entry");
-
-const stopInput=document.getElementById("stop");
-
-[balanceInput,riskInput,entryInput,stopInput]
-
-.forEach(x=>x.addEventListener("input",calc));
-
-function toggle(el){
-
-el.classList.toggle("active");
-
-check();
-
-}
-
-function check(){
-
-let checked=
-
-document.querySelectorAll(".check.active").length;
-
-document.getElementById("unlock").disabled=
-
-!(checked===3 && mood.value<75);
-
-}
-
-document.getElementById("unlock")
-
-.onclick=()=>{
+function unlockTrade(){
 
 alert(
+"Trading Terminal Unlocked"
+)
 
-"Trading Terminal Unlocked\nTrade Safe"
-
-);
-
-};
-
-calc();
-
-check();
+}
 
 </script>
 

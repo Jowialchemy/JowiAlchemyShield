@@ -3,19 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+
 <title>JowiAlchemyShield</title>
 
 <style>
 
 :root{
---bg:#0a0e1a;
---card:#172030;
---text:#fff;
---muted:#94a3b8;
---green:#10b981;
---red:#ef4444;
---orange:#f59e0b;
+
+--bg:#050816;
+--card:#0b1225;
+
+--border:#1f2a44;
+
+--green:#18d39e;
+
 --blue:#3b82f6;
+
+--red:#ff4d4d;
+
+--orange:#f5a623;
+
+--text:#ffffff;
+
+--muted:#98a2b3;
+
 }
 
 *{
@@ -25,154 +36,538 @@ box-sizing:border-box;
 }
 
 body{
-font-family:Arial,sans-serif;
+
+font-family:Arial,Helvetica,sans-serif;
+
 background:var(--bg);
-color:var(--text);
+
+color:white;
+
+}
+
+.header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:20px;
+
+border-bottom:1px solid var(--border);
+
+background:#07101f;
+
+position:sticky;
+
+top:0;
+
+z-index:50;
+
+}
+
+.logo{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+font-size:32px;
+
+font-weight:700;
+
+}
+
+.logo span{
+
+color:var(--green);
+
+}
+
+.logo-icon{
+
+width:52px;
+
+height:52px;
+
+background:#083a24;
+
+border-radius:14px;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:26px;
+
+}
+
+.status{
+
+color:#9ca3af;
+
 }
 
 .container{
+
 max-width:900px;
+
 margin:auto;
-padding:20px;
+
+padding:25px;
+
 }
 
 .card{
+
 background:var(--card);
-padding:20px;
-border-radius:15px;
-margin-bottom:20px;
+
+border:1px solid var(--border);
+
+border-radius:28px;
+
+padding:35px;
+
+margin-bottom:25px;
+
+box-shadow:
+
+0 0 40px rgba(0,0,0,.4);
+
 }
 
-h2{
-margin-bottom:15px;
+.section-top{
+
+display:flex;
+
+gap:18px;
+
+align-items:flex-start;
+
+margin-bottom:30px;
+
 }
 
-input,select{
-width:100%;
-padding:12px;
-margin-top:6px;
-margin-bottom:15px;
-background:#101827;
-border:none;
-color:white;
-border-radius:10px;
-}
+.num{
 
-button{
-padding:15px 30px;
-border:none;
-border-radius:12px;
-cursor:pointer;
-font-size:16px;
-}
+width:52px;
 
-.proceed{
-background:var(--green);
-color:white;
-width:100%;
+height:52px;
+
+background:#081633;
+
+border-radius:50%;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:24px;
+
 font-weight:bold;
+
+color:#4ea3ff;
+
 }
 
-.proceed:disabled{
-opacity:.4;
-cursor:not-allowed;
+.title{
+
+font-size:42px;
+
+font-weight:700;
+
+margin-bottom:8px;
+
+}
+
+.subtitle{
+
+color:var(--muted);
+
+font-size:24px;
+
+}
+
+.slider-labels{
+
+display:flex;
+
+justify-content:space-between;
+
+margin-bottom:20px;
+
+font-size:22px;
+
+}
+
+input[type=range]{
+
+width:100%;
+
+height:12px;
+
+border-radius:20px;
+
+background:
+
+linear-gradient(
+
+90deg,
+
+green,
+
+orange,
+
+red);
+
+appearance:none;
+
+}
+
+input[type=range]::-webkit-slider-thumb{
+
+appearance:none;
+
+width:36px;
+
+height:36px;
+
+border-radius:50%;
+
+background:#2563eb;
+
+border:4px solid #0f172a;
+
 }
 
 .result{
-padding:15px;
-background:#101827;
-border-radius:10px;
-margin-top:10px;
+
+margin-top:25px;
+
+font-size:30px;
+
+font-weight:bold;
+
+}
+
+.grid{
+
+display:grid;
+
+grid-template-columns:1fr;
+
+gap:20px;
+
+}
+
+label{
+
+display:block;
+
+margin-bottom:8px;
+
+font-size:14px;
+
+color:#9ca3af;
+
+}
+
+input,select{
+
+width:100%;
+
+padding:20px;
+
+border-radius:18px;
+
+border:1px solid var(--border);
+
+background:#081120;
+
+color:white;
+
+font-size:28px;
+
+}
+
+.result-box{
+
+margin-top:30px;
+
+background:#07101f;
+
+padding:25px;
+
+border-radius:20px;
+
+}
+
+.row{
+
+display:flex;
+
+justify-content:space-between;
+
+padding:12px 0;
+
+font-size:28px;
+
 }
 
 .check{
-padding:15px;
-background:#101827;
-margin-bottom:10px;
-border-radius:10px;
+
+padding:22px;
+
+background:#081120;
+
+border-radius:18px;
+
+margin-bottom:14px;
+
+display:flex;
+
+gap:15px;
+
 cursor:pointer;
+
 }
 
 .check.active{
+
 border:2px solid var(--green);
+
 }
 
-.lock{
-position:fixed;
-inset:0;
-display:none;
-justify-content:center;
-align-items:center;
-background:rgba(0,0,0,.9);
+.check-box{
+
+width:32px;
+
+height:32px;
+
+border:2px solid white;
+
 }
 
-.lock.show{
-display:flex;
-}
+.unlock{
 
-.lockCard{
-background:var(--card);
-padding:40px;
+width:100%;
+
+padding:24px;
+
+font-size:30px;
+
+font-weight:bold;
+
+border:none;
+
 border-radius:20px;
-text-align:center;
-width:320px;
+
+background:linear-gradient(
+
+90deg,
+
+#10b981,
+
+#059669);
+
+color:white;
+
+margin-top:30px;
+
 }
 
-.timer{
-font-size:40px;
-margin:20px 0;
-color:var(--red);
+.unlock:disabled{
+
+opacity:.4;
+
 }
 
-.green{
-color:var(--green);
+@media(max-width:700px){
+
+.title{
+
+font-size:26px;
+
 }
 
-.orange{
-color:var(--orange);
+.subtitle{
+
+font-size:18px;
+
 }
 
-.red{
-color:var(--red);
+.row{
+
+font-size:18px;
+
+}
+
+input,select{
+
+font-size:20px;
+
+}
+
+.unlock{
+
+font-size:22px;
+
+}
+
 }
 
 </style>
+
 </head>
 
 <body>
+
+<header class="header">
+
+<div class="logo">
+
+<div class="logo-icon">
+
+🛡️
+
+</div>
+
+<div>
+
+Jowi<span>AlchemyShield</span>
+
+</div>
+
+</div>
+
+<div class="status">
+
+Session Active
+
+</div>
+
+</header>
 
 <div class="container">
 
 <div class="card">
 
-<h2>Emotion Check</h2>
+<div class="section-top">
 
-<input
-type="range"
-min="0"
-max="100"
-value="50"
-id="mood"
->
+<div class="num">
 
-<p id="moodText">
-
-Neutral
-
-</p>
+1
 
 </div>
 
+<div>
+
+<div class="title">
+
+How are you feeling right now?
+
+</div>
+
+<div class="subtitle">
+
+Be honest. This affects every decision you make.
+
+</div>
+
+</div>
+
+</div>
+
+<div class="slider-labels">
+
+<span>😌 Calm</span>
+
+<span>😐 Neutral</span>
+
+<span>😤 Stressed</span>
+
+<span>😡 Desperate</span>
+
+</div>
+
+<input id="mood"
+
+type="range"
+
+min="0"
+
+max="100"
+
+value="50">
+
+<div class="result"
+
+id="moodText">
+
+Caution
+
+</div>
+
+</div>
 
 <div class="card">
 
-<h2>Risk Calculator</h2>
+<div class="section-top">
 
-<label>Balance</label>
+<div class="num">
 
-<input id="balance" value="10000">
+2
 
-<label>Risk %</label>
+</div>
+
+<div>
+
+<div class="title">
+
+Position Size Calculator
+
+</div>
+
+<div class="subtitle">
+
+Know your risk before you click buy.
+
+</div>
+
+</div>
+
+</div>
+
+<div class="grid">
+
+<div>
+
+<label>
+
+ACCOUNT BALANCE
+
+</label>
+
+<input id="balance"
+
+value="10000">
+
+</div>
+
+<div>
+
+<label>
+
+RISK %
+
+</label>
 
 <select id="risk">
 
@@ -184,49 +579,113 @@ Neutral
 
 </select>
 
-<label>Entry</label>
-
-<input id="entry" value="110660">
-
-<label>Stop Loss</label>
-
-<input id="stop" value="108500">
-
-<div class="result">
+</div>
 
 <div>
 
-Risk Amount:
+<label>
+
+ENTRY PRICE
+
+</label>
+
+<input id="entry"
+
+value="110660">
+
+</div>
+
+<div>
+
+<label>
+
+STOP LOSS
+
+</label>
+
+<input id="stop"
+
+value="108500">
+
+</div>
+
+</div>
+
+<div class="result-box">
+
+<div class="row">
+
+<span>
+
+Risk Amount
+
+</span>
 
 <span id="riskAmount">
 
-$0
+$200
 
 </span>
 
 </div>
 
-<div>
+<div class="row">
 
-Position Size:
+<span>
+
+Position Size
+
+</span>
 
 <span id="position">
 
-0
+0.09
 
 </span>
+
+</div>
+
+<div class="row">
+
+<span>
+
+Take Profit
+
+</span>
+
+<span id="profit">
+
+114980
+
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="section-top">
+
+<div class="num">
+
+3
 
 </div>
 
 <div>
 
-Take Profit:
+<div class="title">
 
-<span id="tp">
+Checklist
 
-0
+</div>
 
-</span>
+<div class="subtitle">
+
+No exceptions.
 
 </div>
 
@@ -234,35 +693,60 @@ Take Profit:
 
 </div>
 
+<div class="check"
 
-<div class="card">
+onclick="toggle(this)">
 
-<h2>Checklist</h2>
-
-<div class="check" data-id="1">
-
-Stop loss set
+<div class="check-box">
 
 </div>
 
-<div class="check" data-id="2">
+<div>
 
-Risk below limit
-
-</div>
-
-<div class="check" data-id="3">
-
-Not revenge trading
+I have a stop loss
 
 </div>
 
 </div>
 
+<div class="check"
+
+onclick="toggle(this)">
+
+<div class="check-box">
+
+</div>
+
+<div>
+
+Risk is under 2%
+
+</div>
+
+</div>
+
+<div class="check"
+
+onclick="toggle(this)">
+
+<div class="check-box">
+
+</div>
+
+<div>
+
+I am not revenge trading
+
+</div>
+
+</div>
 
 <button
-class="proceed"
-id="tradeBtn"
+
+class="unlock"
+
+id="unlock"
+
 disabled>
 
 Unlock Trading Terminal
@@ -271,391 +755,138 @@ Unlock Trading Terminal
 
 </div>
 
-
-<div class="lock" id="lock">
-
-<div class="lockCard">
-
-<h2>Trading Paused</h2>
-
-<div class="timer" id="timer">
-
-02:00:00
-
 </div>
-
-<button onclick="closeLock()">
-
-OK
-
-</button>
-
-</div>
-
-</div>
-
 
 <script>
-
-let lockInterval=null;
-
-let state={
-
-mood:50,
-
-locked:false,
-
-lockEnd:null,
-
-checks:[false,false,false]
-
-};
-
-function save(){
-
-localStorage.setItem(
-
-"shield",
-
-JSON.stringify(state)
-
-);
-
-}
-
-function load(){
-
-try{
-
-const s=JSON.parse(
-
-localStorage.getItem("shield")
-
-);
-
-if(s) state=s;
-
-}catch{}
-
-}
-
-load();
 
 const mood=document.getElementById("mood");
 
 const moodText=document.getElementById("moodText");
 
-mood.value=state.mood;
+mood.oninput=()=>{
 
-function updateMood(){
+if(mood.value<40){
 
-state.mood=parseInt(mood.value);
+moodText.innerHTML="Good Headspace";
 
-save();
-
-if(state.mood<50){
-
-moodText.innerHTML="<span class='green'>Calm</span>";
+moodText.style.color="#18d39e";
 
 }
 
-else if(state.mood<75){
+else if(mood.value<75){
 
-moodText.innerHTML="<span class='orange'>Caution</span>";
+moodText.innerHTML="Caution";
+
+moodText.style.color="#f5a623";
 
 }
 
 else{
 
-moodText.innerHTML="<span class='red'>Danger</span>";
+moodText.innerHTML="Trading Paused";
 
-if(!state.locked){
-
-lockTrading();
+moodText.style.color="#ff4d4d";
 
 }
 
-}
-
-checkReady();
-
-}
-
-mood.addEventListener(
-
-"input",
-
-updateMood
-
-);
-
-function lockTrading(){
-
-state.locked=true;
-
-state.lockEnd=
-
-Date.now()+7200000;
-
-save();
-
-showLock();
-
-}
-
-function showLock(){
-
-document
-
-.getElementById("lock")
-
-.classList.add("show");
-
-updateTimer();
-
-if(lockInterval)
-
-clearInterval(lockInterval);
-
-lockInterval=setInterval(
-
-updateTimer,
-
-1000
-
-);
-
-}
-
-function updateTimer(){
-
-let left=
-
-state.lockEnd-Date.now();
-
-if(left<=0){
-
-clearInterval(lockInterval);
-
-state.locked=false;
-
-state.lockEnd=null;
-
-save();
-
-document
-
-.getElementById("lock")
-
-.classList.remove("show");
-
-return;
-
-}
-
-let h=Math.floor(left/3600000);
-
-let m=Math.floor((left%3600000)/60000);
-
-let s=Math.floor((left%60000)/1000);
-
-document.getElementById("timer")
-
-.innerText=
-
-`${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
-
-}
-
-function closeLock(){
-
-document
-
-.getElementById("lock")
-
-.classList.remove("show");
+check();
 
 }
 
 function calc(){
 
-let bal=parseFloat(balance.value)||0;
+let balance=
 
-let riskPct=parseFloat(risk.value)||0;
+parseFloat(balanceInput.value)||0;
 
-let entry=parseFloat(
+let risk=
 
-document.getElementById("entry").value
+parseFloat(riskInput.value)||2;
 
-)||0;
+let entry=
 
-let stop=parseFloat(
+parseFloat(entryInput.value)||0;
 
-document.getElementById("stop").value
+let stop=
 
-)||0;
+parseFloat(stopInput.value)||0;
 
-let riskMoney=
+let riskAmount=
 
-bal*riskPct/100;
+balance*(risk/100);
 
-let diff=Math.abs(
+let diff=
 
-entry-stop
+Math.abs(entry-stop);
 
-);
+let size=
 
-if(diff===0) return;
+riskAmount/diff;
 
-let size=riskMoney/diff;
+document.getElementById("riskAmount").innerHTML=
 
-document.getElementById(
+"$"+riskAmount.toFixed(2);
 
-"riskAmount"
-
-).innerText=
-
-"$"+riskMoney.toFixed(2);
-
-document.getElementById(
-
-"position"
-
-).innerText=
+document.getElementById("position").innerHTML=
 
 size.toFixed(4);
 
-document.getElementById(
-
-"tp"
-
-).innerText=
+document.getElementById("profit").innerHTML=
 
 (entry+(diff*2)).toFixed(0);
 
 }
 
-["balance","risk","entry","stop"]
+const balanceInput=document.getElementById("balance");
 
-.forEach(id=>{
+const riskInput=document.getElementById("risk");
 
-document
+const entryInput=document.getElementById("entry");
 
-.getElementById(id)
+const stopInput=document.getElementById("stop");
 
-.addEventListener(
+[balanceInput,riskInput,entryInput,stopInput]
 
-"input",
+.forEach(x=>x.addEventListener("input",calc));
 
-calc
+function toggle(el){
 
-);
+el.classList.toggle("active");
 
-});
-
-document
-
-.querySelectorAll(".check")
-
-.forEach(el=>{
-
-let id=parseInt(
-
-el.dataset.id
-
-)-1;
-
-if(state.checks[id])
-
-el.classList.add(
-
-"active"
-
-);
-
-el.onclick=()=>{
-
-state.checks[id]=
-
-!state.checks[id];
-
-el.classList.toggle(
-
-"active"
-
-);
-
-save();
-
-checkReady();
-
-};
-
-});
-
-function checkReady(){
-
-let ready=
-
-state.checks.every(
-
-v=>v
-
-)
-
-&& !state.locked
-
-&& state.mood<75;
-
-document
-
-.getElementById(
-
-"tradeBtn"
-
-).disabled=!ready;
+check();
 
 }
 
-document
+function check(){
 
-.getElementById(
+let checked=
 
-"tradeBtn"
+document.querySelectorAll(".check.active").length;
 
-)
+document.getElementById("unlock").disabled=
+
+!(checked===3 && mood.value<75);
+
+}
+
+document.getElementById("unlock")
 
 .onclick=()=>{
 
 alert(
 
-"Trading Terminal Unlocked"
+"Trading Terminal Unlocked\nTrade Safe"
 
 );
 
 };
 
-if(
-
-state.locked &&
-
-state.lockEnd>
-
-Date.now()
-
-){
-
-showLock();
-
-}
-
-updateMood();
-
 calc();
 
-checkReady();
+check();
 
 </script>
 
 </body>
+
 </html>

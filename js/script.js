@@ -1,12 +1,9 @@
 // ===============================
-// JowiAlchemyShield - FULL JS
+// JowiAlchemyShield - UPGRADED JS
 // ===============================
 
 
-// ===============================
-// MOOD SLIDER LOGIC
-// ===============================
-
+// ---------- MOOD SYSTEM ----------
 const mood = document.getElementById("mood");
 const moodResult = document.getElementById("moodResult");
 
@@ -19,94 +16,77 @@ mood.addEventListener("input", () => {
     } 
     else if (value < 70) {
         moodResult.className = "result-box orange show";
-        moodResult.innerHTML = "Caution";
+        moodResult.innerHTML = "Neutral";
     } 
     else {
         moodResult.className = "result-box red show";
-        moodResult.innerHTML = "Do NOT Trade";
+        moodResult.innerHTML = "Desperate / Do NOT Trade";
     }
 });
 
 
-// ===============================
-// POSITION SIZE CALCULATOR
-// ===============================
-
-const balanceInput = document.getElementById("balance");
-const riskSelect = document.getElementById("risk");
-const entryInput = document.getElementById("entry");
-const stopInput = document.getElementById("stop");
+// ---------- CALCULATOR ----------
+const balance = document.getElementById("balance");
+const risk = document.getElementById("risk");
+const entry = document.getElementById("entry");
+const stop = document.getElementById("stop");
 
 const riskAmountEl = document.getElementById("riskAmount");
 const positionEl = document.getElementById("position");
 const tpEl = document.getElementById("tp");
 
-function calculateTrade() {
+function calculate() {
 
-    let balance = parseFloat(balanceInput.value) || 0;
-    let riskPercent = parseFloat(riskSelect.value) || 1;
-    let entry = parseFloat(entryInput.value) || 0;
-    let stop = parseFloat(stopInput.value) || 0;
+    let bal = parseFloat(balance.value) || 0;
+    let riskPct = parseFloat(risk.value) || 1;
+    let ent = parseFloat(entry.value) || 0;
+    let stp = parseFloat(stop.value) || 0;
 
-    // Risk amount
-    let riskAmount = (riskPercent / 100) * balance;
+    let riskAmount = (riskPct / 100) * bal;
+    let distance = Math.abs(ent - stp);
+    let position = distance > 0 ? riskAmount / distance : 0;
+    let tp = ent + (ent - stp) * 2;
 
-    // Stop distance
-    let stopDistance = Math.abs(entry - stop);
-
-    // Position size
-    let positionSize = stopDistance > 0 ? riskAmount / stopDistance : 0;
-
-    // Take Profit (2R reward)
-    let takeProfit = entry + (entry - stop) * 2;
-
-    // Update UI
     riskAmountEl.innerText = "$" + riskAmount.toFixed(2);
-
-    positionEl.innerText = positionSize.toFixed(6);
-
-    tpEl.innerText = takeProfit.toFixed(2);
+    positionEl.innerText = position.toFixed(6);
+    tpEl.innerText = tp.toFixed(2);
 }
 
-
-// Auto update calculator
-[balanceInput, riskSelect, entryInput, stopInput].forEach(el => {
-    el.addEventListener("input", calculateTrade);
+[balance, risk, entry, stop].forEach(el => {
+    el.addEventListener("input", calculate);
 });
 
-// run once on load
-calculateTrade();
+calculate();
 
 
-// ===============================
-// CHECKLIST LOGIC (optional upgrade)
-// ===============================
+// ---------- TRADING CONTEXT (STATIC NOW) ----------
+document.getElementById("tradesToday").innerText = "0";
+document.getElementById("losses").innerText = "0 / 3";
+document.getElementById("dailyPnL").innerText = "$0.00 (0.0%)";
+document.getElementById("weeklyPnL").innerText = "$0.00 (0.0%)";
 
+
+// ---------- CHECKLIST ----------
 const checkboxes = document.querySelectorAll("input[type='checkbox']");
 
-function checkTradeReadiness() {
-    let allChecked = true;
-
-    checkboxes.forEach(cb => {
-        if (!cb.checked) allChecked = false;
-    });
-
-    if (allChecked) {
-        console.log("✔ Ready to trade");
-    } else {
-        console.log("⛔ Not ready yet");
-    }
-}
-
 checkboxes.forEach(cb => {
-    cb.addEventListener("change", checkTradeReadiness);
+    cb.addEventListener("change", () => {
+        let all = true;
+
+        checkboxes.forEach(c => {
+            if (!c.checked) all = false;
+        });
+
+        if (all) {
+            console.log("✔ Ready to trade");
+        } else {
+            console.log("⛔ Not ready");
+        }
+    });
 });
 
 
-// ===============================
-// UNLOCK BUTTON
-// ===============================
-
+// ---------- BUTTON ----------
 function unlockTrade() {
     alert("Trading Terminal Unlocked 🔓");
 }

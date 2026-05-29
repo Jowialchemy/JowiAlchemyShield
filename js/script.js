@@ -141,9 +141,7 @@ stop.value
 
 
 let riskAmount =
-(
-riskPct / 100
-)
+(riskPct / 100)
 *
 bal;
 
@@ -245,7 +243,7 @@ return ready;
 
 
 // ------------------------------
-// UNLOCK TERMINAL BUTTON
+// UNLOCK BUTTON
 // ------------------------------
 
 function unlockTrade(){
@@ -273,8 +271,6 @@ alert(
 );
 
 
-// Button becomes active state
-
 button.innerText =
 "Terminal Active ✅";
 
@@ -287,9 +283,6 @@ button.style.cursor =
 button.style.background =
 "#10b981";
 
-
-// visual success effect
-
 document.body.style.boxShadow =
 "inset 0 0 50px rgba(16,185,129,.20)";
 
@@ -298,7 +291,7 @@ document.body.style.boxShadow =
 
 
 // ------------------------------
-// TRADING CONTEXT DEFAULTS
+// DEFAULT TRADING CONTEXT
 // ------------------------------
 
 const tradesToday =
@@ -349,6 +342,69 @@ weeklyPnL.innerText =
 "$0.00 (0.0%)";
 
 }
+
+
+
+// ------------------------------
+// LIVE CRYPTO PRICES
+// ------------------------------
+
+async function loadPrices(){
+
+try{
+
+const response =
+await fetch(
+
+"https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd"
+
+);
+
+const data =
+await response.json();
+
+document.getElementById(
+"btcPrice"
+).innerText =
+"$" +
+data.bitcoin.usd.toLocaleString();
+
+
+document.getElementById(
+"ethPrice"
+).innerText =
+"$" +
+data.ethereum.usd.toLocaleString();
+
+
+document.getElementById(
+"solPrice"
+).innerText =
+"$" +
+data.solana.usd.toLocaleString();
+
+
+}
+catch(error){
+
+console.log(
+"Price loading failed",
+error
+);
+
+}
+
+}
+
+
+loadPrices();
+
+setInterval(
+loadPrices,
+30000
+);
+
+
 
 console.log(
 "JowiAlchemyShield Loaded ✅"

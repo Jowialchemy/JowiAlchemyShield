@@ -1,7 +1,15 @@
-let priceHistory=[];
+// ==========================
+// JowiAlchemyShield
+// FULL SCRIPT
+// ==========================
 
 
-/* EMOTION */
+let priceHistory = [];
+
+
+// ==========================
+// EMOTION CHECK
+// ==========================
 
 const mood =
 document.getElementById(
@@ -13,23 +21,30 @@ document.getElementById(
 "moodResult"
 );
 
+
 mood.addEventListener(
 "input",
 ()=>{
 
-const v=
+const value =
 Number(
 mood.value
 );
 
-if(v<40){
+if(value<40){
+
+moodResult.className=
+"result-box green show";
 
 moodResult.innerText=
 "Calm";
 
 }
 
-else if(v<70){
+else if(value<70){
+
+moodResult.className=
+"result-box orange show";
 
 moodResult.innerText=
 "Neutral";
@@ -37,6 +52,9 @@ moodResult.innerText=
 }
 
 else{
+
+moodResult.className=
+"result-box red show";
 
 moodResult.innerText=
 "High Risk Emotion";
@@ -50,7 +68,9 @@ moodResult.innerText=
 
 
 
-/* LIVE PRICE + SIGNALS */
+// ==========================
+// LIVE BTC PRICE
+// ==========================
 
 async function loadBTC(){
 
@@ -66,6 +86,7 @@ await fetch(
 const data =
 await response.json();
 
+
 const price =
 data.bitcoin.usd;
 
@@ -78,9 +99,11 @@ document.getElementById(
 price.toLocaleString();
 
 
+
 priceHistory.push(
 price
 );
+
 
 if(
 priceHistory.length>10
@@ -95,20 +118,27 @@ generateSignal();
 
 
 }
-catch(e){
 
-console.log(e);
+catch(err){
+
+console.log(err);
 
 }
 
 }
 
 
+
+
+// ==========================
+// SIGNAL ENGINE
+// ==========================
 
 function generateSignal(){
 
+
 if(
-priceHistory.length<5
+priceHistory.length<2
 ){
 
 return;
@@ -121,13 +151,15 @@ priceHistory[
 priceHistory.length-1
 ];
 
-const old =
+
+const previous =
 priceHistory[
 0
 ];
 
 
-let signal=
+
+let signal =
 "WAIT 🟠";
 
 let entry="-";
@@ -137,14 +169,16 @@ let stop="-";
 let tp="-";
 
 
-const change=
+const change =
 (
-(current-old)
-/old
+(current-previous)
+/
+previous
 )*100;
 
 
-if(change>.20){
+
+if(change>.15){
 
 signal=
 "BUY 🟢";
@@ -163,7 +197,8 @@ current*1.02
 
 }
 
-else if(change<-.20){
+
+else if(change<-.15){
 
 signal=
 "SELL 🔴";
@@ -181,6 +216,7 @@ current*.98
 );
 
 }
+
 
 
 document.getElementById(
@@ -206,25 +242,31 @@ document.getElementById(
 ).innerText=
 tp;
 
+
 }
 
 
+
+// start prices
 
 loadBTC();
 
 setInterval(
 loadBTC,
-30000
+10000
 );
 
 
 
 
-/* CALCULATOR */
+// ==========================
+// RISK CALCULATOR
+// ==========================
 
 function calculateTrade(){
 
-const balance=
+
+const balance =
 parseFloat(
 document.getElementById(
 "balance"
@@ -232,7 +274,7 @@ document.getElementById(
 )||0;
 
 
-const risk=
+const risk =
 parseFloat(
 document.getElementById(
 "risk"
@@ -240,7 +282,7 @@ document.getElementById(
 )||0;
 
 
-const entry=
+const entry =
 parseFloat(
 document.getElementById(
 "entry"
@@ -248,7 +290,7 @@ document.getElementById(
 )||0;
 
 
-const stop=
+const stop =
 parseFloat(
 document.getElementById(
 "stop"
@@ -256,23 +298,27 @@ document.getElementById(
 )||0;
 
 
-const riskAmount=
+
+const riskAmount =
 balance*
 (risk/100);
 
 
-const distance=
+const stopDistance =
 Math.abs(
 entry-stop
 );
 
 
-const position=
-distance
+
+const position =
+stopDistance
 ?
-riskAmount/distance
+riskAmount/
+stopDistance
 :
 0;
+
 
 
 document.getElementById(
@@ -280,14 +326,20 @@ document.getElementById(
 ).innerText=
 
 "$"+
-riskAmount.toFixed(2);
+riskAmount.toFixed(
+2
+);
+
 
 
 document.getElementById(
 "position"
 ).innerText=
 
-position.toFixed(4);
+position.toFixed(
+4
+);
+
 
 
 document.getElementById(
@@ -297,10 +349,13 @@ document.getElementById(
 (
 entry+
 (entry-stop)*2
-).toFixed(0);
+).toFixed(
+0
+);
 
 
 }
+
 
 
 [
@@ -326,10 +381,130 @@ calculateTrade();
 
 
 
+// ==========================
+// TRADING CONTEXT
+// ==========================
+
+
+let tradesToday=0;
+
+let consecutiveLosses=0;
+
+let dailyPNL=0;
+
+let weeklyPNL=0;
+
+
+function updateTradingContext(){
+
+
+document.getElementById(
+"tradeCount"
+).innerText=
+tradesToday;
+
+
+
+document.getElementById(
+"losses"
+).innerText=
+
+consecutiveLosses+
+" / 3";
+
+
+
+document.getElementById(
+"dailyPNL"
+).innerText=
+
+"$"+
+dailyPNL.toFixed(
+2
+);
+
+
+
+document.getElementById(
+"weeklyPNL"
+).innerText=
+
+"$"+
+weeklyPNL.toFixed(
+2
+);
+
+
+}
+
+
+updateTradingContext();
+
+
+
+
+// ==========================
+// UNLOCK TERMINAL
+// ==========================
+
 function unlockTrade(){
+
+
+const checks =
+document.querySelectorAll(
+".tradeCheck"
+);
+
+
+let ready=true;
+
+
+checks.forEach(box=>{
+
+if(
+!box.checked
+){
+
+ready=false;
+
+}
+
+});
+
+
+
+if(!ready){
+
+alert(
+"Complete checklist first ❌"
+);
+
+return;
+
+}
+
+
+
+const button =
+document.getElementById(
+"unlockBtn"
+);
+
+
+button.innerText=
+
+"Terminal Active ✅";
+
+
+button.style.background=
+
+"#059669";
+
+
 
 alert(
 "Trading Terminal Unlocked 🔓"
 );
+
 
 }

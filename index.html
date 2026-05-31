@@ -6,17 +6,16 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+content="width=device-width,initial-scale=1">
 
 <title>JowiAlchemyShield</title>
 
-<link
-href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-rel="stylesheet">
+<link rel="stylesheet"
+href="css/style.css">
 
 <link
-rel="stylesheet"
-href="css/style.css">
+href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap"
+rel="stylesheet">
 
 </head>
 
@@ -54,10 +53,7 @@ Session Active
 <div class="container">
 
 
-
-<!-- ===================== -->
-<!-- EMOTION CHECK -->
-<!-- ===================== -->
+<!-- EMOTION -->
 
 <div class="section">
 
@@ -69,7 +65,7 @@ Emotion Check
 
 <div class="section-sub">
 
-How are you feeling right now?
+How are you feeling?
 
 </div>
 
@@ -77,9 +73,9 @@ How are you feeling right now?
 
 type="range"
 
-class="mood-slider"
-
 id="mood"
+
+class="mood-slider"
 
 min="0"
 
@@ -88,9 +84,7 @@ max="100"
 value="50">
 
 <div
-
 class="result-box orange show"
-
 id="moodResult">
 
 Neutral
@@ -102,9 +96,7 @@ Neutral
 
 
 
-<!-- ===================== -->
-<!-- LIVE CRYPTO -->
-<!-- ===================== -->
+<!-- LIVE PRICES -->
 
 <div class="section">
 
@@ -114,14 +106,7 @@ Live Crypto Prices
 
 </div>
 
-<div class="section-sub">
-
-Updated automatically
-
-</div>
-
 <div class="result-card">
-
 
 <div class="result-row">
 
@@ -135,12 +120,41 @@ Loading...
 
 </div>
 
+</div>
+
+</div>
+
+
+
+
+<!-- SIGNAL ENGINE -->
+
+<div class="section">
+
+<div class="section-title">
+
+AI Trading Signals
+
+</div>
+
+<div class="section-sub">
+
+Signal engine analysis
+
+</div>
+
+<div class="result-card">
+
 
 <div class="result-row">
 
-<span>ETH</span>
+<span>
 
-<span id="ethPrice">
+Signal
+
+</span>
+
+<span id="btcSignal">
 
 Loading...
 
@@ -151,11 +165,49 @@ Loading...
 
 <div class="result-row">
 
-<span>SOL</span>
+<span>
 
-<span id="solPrice">
+Entry
 
-Loading...
+</span>
+
+<span id="btcEntry">
+
+-
+
+</span>
+
+</div>
+
+
+<div class="result-row">
+
+<span>
+
+Stop Loss
+
+</span>
+
+<span id="btcSL">
+
+-
+
+</span>
+
+</div>
+
+
+<div class="result-row">
+
+<span>
+
+Take Profit
+
+</span>
+
+<span id="btcTP">
+
+-
 
 </span>
 
@@ -169,9 +221,7 @@ Loading...
 
 
 
-<!-- ===================== -->
 <!-- RISK CALCULATOR -->
-<!-- ===================== -->
 
 <div class="section">
 
@@ -181,68 +231,44 @@ Risk Calculator
 
 </div>
 
-<div class="section-sub">
-
-Know your risk before you click buy.
-
-</div>
-
 
 <div class="calc-grid">
 
-
 <input
-
 id="balance"
-
-placeholder="Account Balance ($)"
-
 value="10000">
-
 
 <select id="risk">
 
 <option value="1">
 
-1% Safe
+1%
 
 </option>
 
 <option value="2" selected>
 
-2% Standard
+2%
 
 </option>
 
 <option value="3">
 
-3% Aggressive
+3%
 
 </option>
 
 </select>
 
-
 <input
-
 id="entry"
-
-placeholder="Entry Price"
-
 value="110660">
 
-
 <input
-
 id="stop"
-
-placeholder="Stop Loss"
-
 value="108500">
 
-
 </div>
-
 
 
 <div class="result-card">
@@ -251,13 +277,13 @@ value="108500">
 
 <span>
 
-Amount at Risk
+Risk Amount
 
 </span>
 
 <span id="riskAmount">
 
-$0
+-
 
 </span>
 
@@ -274,7 +300,7 @@ Position Size
 
 <span id="position">
 
-0
+-
 
 </span>
 
@@ -285,262 +311,19 @@ Position Size
 
 <span>
 
-Take Profit (2R)
+TP
 
 </span>
 
 <span id="tp">
 
-0
-
-</span>
-
-</div>
-
-
-<div class="result-row">
-
-<span>
-
-Risk / Reward
-
-</span>
-
-<span>
-
-1 : 2.0
-
-</span>
-
-</div>
-
-
-</div>
-
-</div>
-
-
-
-
-<!-- ===================== -->
-<!-- DRAWDOWN -->
-<!-- ===================== -->
-
-<div class="section">
-
-<div class="section-title">
-
-Drawdown Monitor
-
-</div>
-
-<div class="section-sub">
-
-Protect your account from emotional damage.
-
-</div>
-
-
-<div class="result-card">
-
-<div class="result-row">
-
-<span>
-
-Today's Drawdown
-
-</span>
-
-<span>
-
-0%
-
-</span>
-
-</div>
-
-
-<div class="result-row">
-
-<span>
-
-Warning Level
-
-</span>
-
-<span>
-
--5%
-
-</span>
-
-</div>
-
-
-<div class="result-row">
-
-<span>
-
-Max Limit
-
-</span>
-
-<span>
-
--10%
+-
 
 </span>
 
 </div>
 
 </div>
-
-</div>
-
-
-
-
-<!-- ===================== -->
-<!-- TRADING CONTEXT -->
-<!-- ===================== -->
-
-<div class="section">
-
-<div class="section-title">
-
-Today's Trading Context
-
-</div>
-
-<div class="section-sub">
-
-Know where you stand before adding risk.
-
-</div>
-
-
-<div class="result-card">
-
-<div class="result-row">
-
-<span>
-
-Trades Today
-
-</span>
-
-<span id="tradesToday">
-
-0
-
-</span>
-
-</div>
-
-
-<div class="result-row">
-
-<span>
-
-Consecutive Losses
-
-</span>
-
-<span id="losses">
-
-0 / 3
-
-</span>
-
-</div>
-
-
-<div class="result-row">
-
-<span>
-
-Today's P&L
-
-</span>
-
-<span id="dailyPnL">
-
-$0.00
-
-</span>
-
-</div>
-
-
-<div class="result-row">
-
-<span>
-
-This Week's P&L
-
-</span>
-
-<span id="weeklyPnL">
-
-$0.00
-
-</span>
-
-</div>
-
-
-</div>
-
-</div>
-
-
-
-
-<!-- ===================== -->
-<!-- CHECKLIST -->
-<!-- ===================== -->
-
-<div class="section">
-
-<div class="section-title">
-
-Pre-Trade Checklist
-
-</div>
-
-<div class="section-sub">
-
-Three clicks. No exceptions.
-
-</div>
-
-
-<label>
-
-<input type="checkbox">
-
-I have a stop loss set and I will honor it
-
-</label>
-
-
-<label>
-
-<input type="checkbox">
-
-This trade is 2% risk or less
-
-</label>
-
-
-<label>
-
-<input type="checkbox">
-
-I am not trading to recover losses
-
-</label>
-
 
 </div>
 

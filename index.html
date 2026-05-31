@@ -10,7 +10,8 @@ content="width=device-width,initial-scale=1">
 
 <title>JowiAlchemyShield</title>
 
-<link rel="stylesheet"
+<link
+rel="stylesheet"
 href="css/style.css">
 
 <link
@@ -53,6 +54,7 @@ Session Active
 <div class="container">
 
 
+
 <!-- EMOTION -->
 
 <div class="section">
@@ -65,22 +67,16 @@ Emotion Check
 
 <div class="section-sub">
 
-How are you feeling?
+How are you feeling right now?
 
 </div>
 
 <input
-
 type="range"
-
 id="mood"
-
 class="mood-slider"
-
 min="0"
-
 max="100"
-
 value="50">
 
 <div
@@ -106,11 +102,21 @@ Live Crypto Prices
 
 </div>
 
+<div class="section-sub">
+
+Updated automatically
+
+</div>
+
 <div class="result-card">
 
 <div class="result-row">
 
-<span>BTC</span>
+<span>
+
+BTC
+
+</span>
 
 <span id="btcPrice">
 
@@ -139,12 +145,11 @@ AI Trading Signals
 
 <div class="section-sub">
 
-Signal engine analysis
+Signal Engine Analysis
 
 </div>
 
 <div class="result-card">
-
 
 <div class="result-row">
 
@@ -213,7 +218,6 @@ Take Profit
 
 </div>
 
-
 </div>
 
 </div>
@@ -231,12 +235,19 @@ Risk Calculator
 
 </div>
 
+<div class="section-sub">
+
+Know your risk before trading
+
+</div>
+
 
 <div class="calc-grid">
 
 <input
 id="balance"
 value="10000">
+
 
 <select id="risk">
 
@@ -246,7 +257,9 @@ value="10000">
 
 </option>
 
-<option value="2" selected>
+<option
+selected
+value="2">
 
 2%
 
@@ -260,9 +273,11 @@ value="10000">
 
 </select>
 
+
 <input
 id="entry"
 value="110660">
+
 
 <input
 id="stop"
@@ -277,7 +292,7 @@ value="108500">
 
 <span>
 
-Risk Amount
+Amount At Risk
 
 </span>
 
@@ -311,7 +326,7 @@ Position Size
 
 <span>
 
-TP
+Take Profit
 
 </span>
 
@@ -330,15 +345,247 @@ TP
 
 
 
-<button onclick="unlockTrade()">
+<!-- DRAWDOWN -->
+
+<div class="section">
+
+<div class="section-title">
+
+Drawdown Monitor
+
+</div>
+
+<div class="section-sub">
+
+Protect your account
+
+</div>
+
+<div class="result-card">
+
+<div class="result-row">
+
+<span>
+
+Today's Drawdown
+
+</span>
+
+<span>
+
+0%
+
+</span>
+
+</div>
+
+
+<div class="result-row">
+
+<span>
+
+Warning Level
+
+</span>
+
+<span>
+
+-5%
+
+</span>
+
+</div>
+
+
+<div class="result-row">
+
+<span>
+
+Max Limit
+
+</span>
+
+<span>
+
+-10%
+
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+
+<!-- TRADING CONTEXT -->
+
+<div class="section">
+
+<div class="section-title">
+
+Today's Trading Context
+
+</div>
+
+<div class="section-sub">
+
+Know where you stand before adding risk.
+
+</div>
+
+<div class="result-card">
+
+
+<div class="result-row">
+
+<span>
+
+Trades Today
+
+</span>
+
+<span id="tradeCount">
+
+0
+
+</span>
+
+</div>
+
+
+<div class="result-row">
+
+<span>
+
+Consecutive Losses
+
+</span>
+
+<span id="losses">
+
+0 / 3
+
+</span>
+
+</div>
+
+
+<div class="result-row">
+
+<span>
+
+Today's P&L
+
+</span>
+
+<span id="dailyPNL">
+
+$0.00
+
+</span>
+
+</div>
+
+
+<div class="result-row">
+
+<span>
+
+This Week's P&L
+
+</span>
+
+<span id="weeklyPNL">
+
+$0.00
+
+</span>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+
+
+<!-- CHECKLIST -->
+
+<div class="section">
+
+<div class="section-title">
+
+Pre Trade Checklist
+
+</div>
+
+<div class="section-sub">
+
+Three clicks. No exceptions.
+
+</div>
+
+
+<div class="checklist">
+
+
+<label class="check-item">
+
+<input
+type="checkbox"
+class="tradeCheck">
+
+I have a stop loss set and I will honor it
+
+</label>
+
+
+<label class="check-item">
+
+<input
+type="checkbox"
+class="tradeCheck">
+
+This trade is 2% risk or less
+
+</label>
+
+
+<label class="check-item">
+
+<input
+type="checkbox"
+class="tradeCheck">
+
+I am not trading to recover losses
+
+</label>
+
+
+</div>
+
+</div>
+
+
+
+
+<button
+id="unlockBtn"
+onclick="unlockTrade()">
 
 Unlock Trading Terminal
 
 </button>
 
 
-
 </div>
+
 
 
 <script src="js/script.js"></script>
